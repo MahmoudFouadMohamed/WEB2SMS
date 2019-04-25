@@ -43,6 +43,33 @@ public class CommonUtil {
 		return trxInfo;
 	}
 
+	public static com.edafa.web2sms.reporting.service.model.AdminTrxInfo manageReportingTrxInfo(String ID) {
+		Admin admin = new Admin();
+		com.edafa.web2sms.service.model.Admin adminModel = new com.edafa.web2sms.service.model.Admin();
+		if (getObjectFromSession("user") != null) {
+			admin = (Admin) getObjectFromSession("user");
+			adminModel.setAdminName(admin.getAdminName());
+			adminModel.setAdminId(admin.getAdminId());
+			adminModel.setUsername(admin.getUsername());
+		}
+		com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo = new com.edafa.web2sms.reporting.service.model.AdminTrxInfo();
+		trxInfo.setAdmin(adminModel);
+		trxInfo.setTrxId(ID);
+		return trxInfo;
+	}
+	
+	public static String logInfo(com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("UserTrx");
+		sb.append("(");
+		sb.append(trxInfo.getTrxId());
+		sb.append("): ");
+		sb.append("User(");
+		sb.append(trxInfo.getAdmin().getUsername());
+		sb.append("). ");
+		
+		return sb.toString();
+	}
 	public static AdminTrxInfo manageTrxInfo() {
 		String trxID = TrxId.getTrxId(CommonUtil.TRX_PREFIX);
 		return manageTrxInfo(trxID);

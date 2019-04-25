@@ -178,22 +178,22 @@ public class SearchCampaignsBean {
 	}
 
 	public void requestDetailedReportForCampaign(String campaignId) {
-		AdminTrxInfo trxInfo = null;
+		com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo = null;
 		String trxID = TrxId.getTrxId(CommonUtil.TRX_PREFIX);
-		trxInfo = CommonUtil.manageTrxInfo(trxID);
+		trxInfo = CommonUtil.manageReportingTrxInfo(trxID);
 		try {
 
-			logger.debug(trxInfo.logInfo()
+			logger.debug(CommonUtil.logInfo(trxInfo)
 					+ "Reuqsting detailed report for campaign with id["
 					+ campaignId + "].");
 
-			ResultStatus result = reportService
+			com.edafa.web2sms.reporting.service.model.ResultStatus result = reportService
 					.offlineGenerateDetailedCampaignReportForAdmin(trxInfo,
 							campaignId);
 			ResponseStatus status = result.getStatus();
 			switch (status) {
 			case SUCCESS:
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "detailed report requested successfully.");
 				FacesContext
 				.getCurrentInstance()
@@ -206,7 +206,7 @@ public class SearchCampaignsBean {
 				break;
 
 			default:
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "error while requesting detaield report.");
 				FacesContext
 						.getCurrentInstance()
@@ -219,10 +219,10 @@ public class SearchCampaignsBean {
 				break;
 			}
 		} catch (Exception e) {
-			logger.debug(trxInfo.logInfo()
+			logger.debug(CommonUtil.logInfo(trxInfo)
 					+ "exception while requesting detaield report: "
 					+ e.getMessage());
-			logger.debug(trxInfo.logInfo()
+			logger.debug(CommonUtil.logInfo(trxInfo)
 					+ "exception while requesting detaield report: "
 					+ e.getMessage());
 

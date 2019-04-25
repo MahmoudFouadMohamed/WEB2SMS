@@ -18,12 +18,12 @@ import org.apache.logging.log4j.Logger;
 import com.edafa.web2sms.dalayer.enums.CampaignStatusName;
 import com.edafa.web2sms.dalayer.model.Campaign;
 import com.edafa.web2sms.dalayer.model.Reports;
+import com.edafa.web2sms.reporting.service.model.GetCountResult;
+import com.edafa.web2sms.reporting.service.model.ReportsResult;
 import com.edafa.web2sms.service.admin.interfaces.AdminCampaignManagementBeanLocal;
 import com.edafa.web2sms.service.enums.ResponseStatus;
 import com.edafa.web2sms.service.model.AdminTrxInfo;
 import com.edafa.web2sms.service.model.CampaignSearchParam;
-import com.edafa.web2sms.service.model.GetCountResult;
-import com.edafa.web2sms.service.model.ReportsResult;
 import com.edafa.web2sms.service.model.ResultStatus;
 import com.edafa.web2sms.service.report.ReportManagementService;
 import com.edafa.web2sms.ui.util.CommonUtil;
@@ -51,26 +51,26 @@ public class OfflineReports {
 	}
 
 	private void fillReportsList(int fromRow) {
-		AdminTrxInfo trxInfo = null;
+		com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo = null;
 		String trxID = TrxId.getTrxId(CommonUtil.TRX_PREFIX);
-		trxInfo = CommonUtil.manageTrxInfo(trxID);
+		trxInfo = CommonUtil.manageReportingTrxInfo(trxID);
 		try {
 
-			logger.debug(trxInfo.logInfo() + "fill requested reports table.");
+			logger.debug(CommonUtil.logInfo(trxInfo) + "fill requested reports table.");
 
 			ReportsResult status = reportService.getAllAdminReports(trxInfo,
 					fromRow, pageSize);
 			switch (status.getStatus()) {
 			case SUCCESS:
 				reports = status.getReports();
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "list of request reports is retrived successfully from: ["
 						+ fromRow + ", to:" + pageSize + "].");
 				break;
 
 			default:
 				reports = new ArrayList<com.edafa.web2sms.service.report.Reports>();
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "failed to retrive requested reports list from: ["
 						+ fromRow + ", to:" + pageSize + "].");
 				FacesContext.getCurrentInstance().addMessage(
@@ -80,7 +80,7 @@ public class OfflineReports {
 				break;
 			}
 		} catch (Exception e) {
-			logger.debug(trxInfo.logInfo()
+			logger.debug(CommonUtil.logInfo(trxInfo)
 					+ "Exception while retriving requested reports list from: ["
 					+ fromRow + ", to:" + pageSize + "].");
 			FacesContext.getCurrentInstance().addMessage(
@@ -93,9 +93,9 @@ public class OfflineReports {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void fillTable(int fromRow) {
-		AdminTrxInfo trxInfo = null;
+		com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo = null;
 		String trxID = TrxId.getTrxId(CommonUtil.TRX_PREFIX);
-		trxInfo = CommonUtil.manageTrxInfo(trxID);
+		trxInfo = CommonUtil.manageReportingTrxInfo(trxID);
 		try {
 			reports = new ArrayList<com.edafa.web2sms.service.report.Reports>();
 			fillReportsList(fromRow);
@@ -105,18 +105,18 @@ public class OfflineReports {
 			switch (countResult.getStatus()) {
 			case SUCCESS:
 				setRowCount(countResult.getCount());
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "Reports count is retrived successfully");
 				break;
 
 			default:
-				logger.debug(trxInfo.logInfo()
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ "Error while retriving reports count.");
 				break;
 			}
 
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			logger.error(CommonUtil.logInfo(trxInfo)+e.getMessage(), e);
 		}
 	}
 
@@ -144,19 +144,19 @@ public class OfflineReports {
 
 	public void cancelReport(int reportId) {
 
-		AdminTrxInfo trxInfo = null;
+		com.edafa.web2sms.reporting.service.model.AdminTrxInfo trxInfo = null;
 		String trxID = TrxId.getTrxId(CommonUtil.TRX_PREFIX);
-		trxInfo = CommonUtil.manageTrxInfo(trxID);
-		logger.debug(trxInfo.logInfo() + "cancel report with id: " + reportId
+		trxInfo = CommonUtil.manageReportingTrxInfo(trxID);
+		logger.debug(CommonUtil.logInfo(trxInfo) + "cancel report with id: " + reportId
 				+ "]");
 		try {
 
-			ResultStatus result = reportService.cancelAdminReport(trxInfo,
+			com.edafa.web2sms.reporting.service.model.ResultStatus result = reportService.cancelAdminReport(trxInfo,
 					reportId);
 			ResponseStatus status = result.getStatus();
 			switch (status) {
 			case SUCCESS:
-				logger.debug(trxInfo
+				logger.debug(CommonUtil.logInfo(trxInfo)
 						+ " The requested report is canceled successfully.");
 				currentPage = 0;
 				FacesContext.getCurrentInstance().addMessage(
@@ -167,7 +167,7 @@ public class OfflineReports {
 				break;
 
 			default:
-				logger.debug(trxInfo + "  error while cancelling report.");
+				logger.debug(CommonUtil.logInfo(trxInfo) + "  error while cancelling report.");
 				FacesContext
 						.getCurrentInstance()
 						.addMessage(
@@ -179,9 +179,9 @@ public class OfflineReports {
 				break;
 			}
 		} catch (Exception e) {
-			logger.error(trxInfo + " exception while cancelling report: "
+			logger.error(CommonUtil.logInfo(trxInfo) + " exception while cancelling report: "
 					+ e.getMessage());
-			logger.error(trxInfo + " exception while cancelling report: "
+			logger.error(CommonUtil.logInfo(trxInfo) + " exception while cancelling report: "
 					+ e.getMessage());
 
 			FacesContext.getCurrentInstance().addMessage(
