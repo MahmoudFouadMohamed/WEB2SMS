@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema targetNamespace="http://www.edafa.com/web2sms/service/model/" xmlns:ns0="http://www.edafa.com/web2sms/service/model/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Tier">
+    <xsd:sequence>
+      <xsd:element name="tierId" type="xsd:int"/>
+      <xsd:element name="tierName" type="xsd:string"/>
+      <xsd:element name="quota" type="xsd:int"/>
+      <xsd:element name="description" nillable="true" type="xsd:string"/>
+      <xsd:element name="rateplan" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

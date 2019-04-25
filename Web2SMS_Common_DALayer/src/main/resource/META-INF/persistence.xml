@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="Web2SMS-DB">
+		<jta-data-source>jdbc/web2sms</jta-data-source>
+		<class>com.edafa.web2sms.dalayer.model.Account</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountStatus</class>
+		<class>com.edafa.web2sms.dalayer.model.Admin</class>
+		<class>com.edafa.web2sms.dalayer.model.ContactList</class>
+		<class>com.edafa.web2sms.dalayer.model.ProvRequestActive</class>
+		<class>com.edafa.web2sms.dalayer.model.ProvRequestArch</class>
+		<class>com.edafa.web2sms.dalayer.model.ProvRequestStatus</class>
+		<class>com.edafa.web2sms.dalayer.model.ProvRequestType</class>
+		<class>com.edafa.web2sms.dalayer.model.SystemRole</class>
+		<class>com.edafa.web2sms.dalayer.model.Template</class>
+		<class>com.edafa.web2sms.dalayer.model.Tier</class>
+		<class>com.edafa.web2sms.dalayer.model.Module</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountSender</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountSenderPK</class>
+		<class>com.edafa.web2sms.dalayer.model.Contact</class>
+		<class>com.edafa.web2sms.dalayer.model.ListContactPK</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSStatus</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSCConfig</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSCBindType</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSLog</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSSegmentLog</class>
+		<class>com.edafa.web2sms.dalayer.model.Configuration</class>
+		<class>com.edafa.web2sms.dalayer.model.Language</class>
+		<class>com.edafa.web2sms.dalayer.model.ScheduleFrequency</class>
+		<class>com.edafa.web2sms.dalayer.model.Campaign</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignAction</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignStatus</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignExecution</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignScheduling</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignSMSDetails</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignLists</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignListsPK</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountStatusUserAction</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountStatusUserActionPK</class>
+		<class>com.edafa.web2sms.dalayer.model.Action</class>
+		<class>com.edafa.web2sms.dalayer.model.ListType</class>
+		<class>com.edafa.web2sms.dalayer.model.IntraSender</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountUser</class>
+		<class>com.edafa.web2sms.dalayer.model.AppErrorEntity</class>
+		<class>com.edafa.web2sms.dalayer.model.CampaignAggregationView</class>
+		<class>com.edafa.web2sms.dalayer.model.ErrorDefinitionEntity</class>
+		<class>com.edafa.web2sms.dalayer.model.ProvRequest</class>
+		<class>com.edafa.web2sms.dalayer.model.ErrorDefinitionPK</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountIP</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountSMSAPI</class>
+		<class>com.edafa.web2sms.dalayer.model.QuotaHistory</class>
+		<class>com.edafa.web2sms.dalayer.model.SMSAPIView</class>
+		<class>com.edafa.web2sms.dalayer.model.TierType</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountTier</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountQuota</class>
+		<class>com.edafa.web2sms.dalayer.model.SMS_API_VIEW_Camp</class>
+		<class>com.edafa.web2sms.dalayer.model.AccountGroup</class>
+		<class>com.edafa.web2sms.dalayer.model.Privilege</class>
+		
+
+		<!-- Views -->
+
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+
+		<properties>
+                    <property name="javax.persistence.query.timeout" value="10000"/>
+                    <!--<property name="toplink.cache.type.default" value="NONE" />-->
+<!--                    <property name="eclipselink.logging.logger" value="ServerLogger" />
+                    <property name="eclipselink.logging.level" value="ALL" />
+                    <property name="eclipselink.profiler" value="QueryMonitor" />-->
+                </properties>
+	</persistence-unit>
+
+	<persistence-unit name="Vodas-DB">
+		<jta-data-source>jdbc/vodas</jta-data-source>
+	</persistence-unit>
+	<persistence-unit name="VODAS_INTRA">
+		<jta-data-source>jdbc/intravodas</jta-data-source>
+	</persistence-unit>
+
+        <persistence-unit name="ALARMS_DB">
+            <jta-data-source>jdbc/alarms</jta-data-source>
+            <class>com.edafa.web2sms.dalayer.model.AlarmConfiguration</class>
+            <class>com.edafa.web2sms.dalayer.model.AlarmDefinitions</class>
+            <class>com.edafa.web2sms.dalayer.model.Categories</class>
+            <class>com.edafa.web2sms.dalayer.model.Component</class>
+            <class>com.edafa.web2sms.dalayer.model.FtpServer</class>
+            <class>com.edafa.web2sms.dalayer.model.Node</class>
+            <class>com.edafa.web2sms.dalayer.model.ProcessEntity</class>
+            <class>com.edafa.web2sms.dalayer.model.Service</class>
+            <shared-cache-mode>ALL</shared-cache-mode>
+        </persistence-unit>
+</persistence>

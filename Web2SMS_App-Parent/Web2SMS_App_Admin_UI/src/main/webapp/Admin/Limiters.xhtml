@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition
+	template="/WEB-INF/Templates/AdministratorTemplate.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Limiters</div>
+			<div class="pgContainer">
+				<h:form>
+					<h:messages errorClass="errormessages" infoClass="succeededMessage"
+						showSummary="false" showDetail="true" globalOnly="true" />
+					<br />
+					<div class="xalign">
+						<h:commandButton value="Apply All"
+							action="#{limitersBean.applyAllConfigs}">
+						</h:commandButton>
+						<br />
+					</div>
+
+
+					<h:panelGroup>
+						<div style="width: 97%; margin: auto;">
+							<div class="reversePnl">
+								<div class="reversePnlTitl">
+									<span class="spanTitle "> Add Limiter</span>
+								</div>
+								<div class="reversePnlBdy closedPnl">
+									<table class="datatablecss">
+										<tr>
+											<!-- 											<th>ID</th> -->
+											<th>Description</th>
+											<th>Sending Rate</th>
+											<th>Campaign Enabled</th>
+											<th>SMS API Enabled</th>
+
+										</tr>
+										<tr>
+											<!-- 											<td><h:inputText -->
+											<!-- 													value="#{limitersBean.newSendingRateLimiter.limiterId}"> -->
+											<!-- 												</h:inputText></td> -->
+											<td><h:inputText
+													value="#{limitersBean.newSendingRateLimiter.description}">
+												</h:inputText></td>
+											<td><h:inputText
+													value="#{limitersBean.newSendingRateLimiter.maxPermits}">
+												</h:inputText></td>
+											<td><h:selectBooleanCheckbox
+													value="#{limitersBean.newSendingRateLimiter.campEnabled}">
+												</h:selectBooleanCheckbox></td>
+											<td><h:selectBooleanCheckbox
+													value="#{limitersBean.newSendingRateLimiter.smsapiEnabled}">
+												</h:selectBooleanCheckbox></td>
+										</tr>
+									</table>
+									<div class="xalign">
+										<h:commandButton value="Add"
+											action="#{limitersBean.AddLimiter}">
+										</h:commandButton>
+									</div>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+					<br />
+
+					<h:dataTable var="vConfig" width="100%"
+						value="#{limitersBean.defaultLimiters}">
+						<h:column>
+							<h:panelGroup>
+								<div style="width: 97%; margin: auto;">
+									<div class="reversePnl">
+										<div class="reversePnlTitl">
+											<span class="spanTitle"> #{vConfig.limiterId}</span>
+										</div>
+										<div class="reversePnlBdy">
+											<table class="datatablecss">
+												<tr>
+													<th>ID</th>
+													<th>Sending Rate</th>
+													<!-- 													<th>SMS Enabled</th> -->
+													<!-- 													<th>Camp Enabled</th> -->
+													<th>Running Sending Rate</th>
+												</tr>
+												<tr>
+													<td><h:outputText value="#{vConfig.limiterId}">
+														</h:outputText></td>
+													<td><h:outputText value="#{vConfig.maxPermits}">
+														</h:outputText></td>
+													<!-- 													<td><h:selectBooleanCheckbox -->
+													<!-- 															value="#{vConfig.campEnabled}"> -->
+													<!-- 														</h:selectBooleanCheckbox></td> -->
+													<!-- 													<td><h:selectBooleanCheckbox -->
+													<!-- 															value="#{vConfig.smsapiEnabled}"> -->
+													<!-- 														</h:selectBooleanCheckbox></td> -->
+													<td><h:outputText value="#{vConfig.runningMaxPermits}">
+														</h:outputText></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</h:panelGroup>
+						</h:column>
+					</h:dataTable>
+
+
+					<h:dataTable var="vConfig" width="100%"
+						value="#{limitersBean.limiterModelList}">
+						<h:column>
+							<h:panelGroup>
+								<div style="width: 97%; margin: auto;">
+									<div class="reversePnl">
+										<div class="reversePnlTitl">
+											<span class="spanTitle"> #{vConfig.description}
+												limiter</span>
+										</div>
+										<div class="reversePnlBdy">
+											<table class="datatablecss">
+												<tr>
+													<th>ID</th>
+													<th>Sending Rate</th>
+													<th>Campaign Enabled</th>
+													<th>SMS API Enabled</th>
+
+													<th>Running Sending Rate</th>
+												</tr>
+												<tr>
+													<td><h:outputText value="#{vConfig.limiterId}">
+														</h:outputText></td>
+													<td><h:inputText value="#{vConfig.maxPermits}">
+														</h:inputText></td>
+													<td><h:selectBooleanCheckbox
+															value="#{vConfig.campEnabled}">
+														</h:selectBooleanCheckbox></td>
+													<td><h:selectBooleanCheckbox
+															value="#{vConfig.smsapiEnabled}">
+														</h:selectBooleanCheckbox></td>
+													<td><h:outputText value="#{vConfig.runningMaxPermits}">
+														</h:outputText></td>
+												</tr>
+											</table>
+											<div class="xalign">
+												<h:commandButton value="Apply"
+													action="#{limitersBean.applyConfigs}"
+													rendered="#{not vConfig.applied}">
+													<f:setPropertyActionListener
+														target="#{limitersBean.sendingRateLimiter}"
+														value="#{vConfig}" />
+												</h:commandButton>
+												<h:commandButton value="Update"
+													action="#{limitersBean.updateSendingRates}">
+													<f:setPropertyActionListener
+														target="#{limitersBean.sendingRateLimiter}"
+														value="#{vConfig}" />
+												</h:commandButton>
+												<h:commandButton value="Remove"
+													onclick="if (! confirm('Are you sure, you want to delete this limiter? Many accounts may be affected')) return false"
+													action="#{limitersBean.RemoveSendingRate}">
+													<f:setPropertyActionListener
+														target="#{limitersBean.sendingRateLimiter}"
+														value="#{vConfig}" />
+												</h:commandButton>
+											</div>
+										</div>
+									</div>
+								</div>
+							</h:panelGroup>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

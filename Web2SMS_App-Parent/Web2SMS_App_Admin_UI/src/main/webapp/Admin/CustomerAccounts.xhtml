@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition
+	template="/WEB-INF/Templates/AdministratorTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Accounts</div>
+			<div class="pgContainer">
+				<h:form id="SearchForm">
+					<h:panelGroup id="NotificationMessagesContainerPanelGroup">
+						<h:messages errorClass="errormessages"
+							infoClass="succeededMessage" />
+						<script type="text/javascript">
+							$(".errormessages").corner();
+							$(".succeededMessage").corner();
+						</script>
+					</h:panelGroup>
+
+					<div class="reversePnl">
+						<div class="reversePnlTitl">
+							<span class="spanTitle">Filter</span>
+						</div>
+						<div class="reversePnlBdy">
+							<table width="100%">
+								<tr>
+									<td>Account ID</td>
+									<td><h:inputText value="#{customerAccountBean.accountID}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+									<td>Billing MSISDN</td>
+									<td><h:inputText
+											value="#{customerAccountBean.billingMSISDN}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+								</tr>
+
+								<tr>
+									<td>Company Name</td>
+									<td><h:inputText
+											value="#{customerAccountBean.companyName}">
+										</h:inputText></td>
+
+									<td>User Name</td>
+									<td><h:inputText value="#{customerAccountBean.userName}">
+										</h:inputText></td>
+								</tr>
+
+								<tr>
+									<td>User Phone</td>
+									<td><h:inputText value="#{customerAccountBean.userPhone}">
+										</h:inputText></td>
+								</tr>
+							</table>
+
+							<h:commandButton value="Filter"
+								action="#{customerAccountBean.filter}" />
+						</div>
+					</div>
+				</h:form>
+
+				<div class="PanelBody">
+					<br />
+					<div>
+						<h:form id="formStyle">
+							<div class="dataTablePaging">
+								<h:commandLink action="#{customerAccountBean.FirstPage}">
+									<img alt="First"
+										src="${facesContext.externalContext.requestContextPath}/img/First#{(customerAccountBean.currentPage==0)?'grey':''}.png" />
+								</h:commandLink>
+								<h:commandLink action="#{customerAccountBean.previousPage}">
+									<img alt="Previous"
+										src="${facesContext.externalContext.requestContextPath}/img/Previous#{(customerAccountBean.currentPage==0)?'grey':''}.png" />
+								</h:commandLink>
+
+								<h:outputText
+									value="#{general.getCeil((customerAccountBean.currentPage)/customerAccountBean.pageSize,customerAccountBean.rowCount/customerAccountBean.pageSize)}"></h:outputText>
+								of
+								<h:outputText
+									value="#{general.getCeil( customerAccountBean.rowCount/customerAccountBean.pageSize )}"></h:outputText>
+
+								<h:commandLink action="#{customerAccountBean.nextPage}">
+									<img alt="Next"
+										src="${facesContext.externalContext.requestContextPath}/img/Next#{(customerAccountBean.currentPage+customerAccountBean.pageSize >=customerAccountBean.rowCount)?'grey':''}.png" />
+								</h:commandLink>
+								<h:commandLink action="#{customerAccountBean.LastPage}">
+									<img alt="Last"
+										src="${facesContext.externalContext.requestContextPath}/img/Last#{(customerAccountBean.currentPage+customerAccountBean.pageSize >=customerAccountBean.rowCount)?'grey':''}.png" />
+								</h:commandLink>
+
+							</div>
+							<div>
+								<h:dataTable var="icustomerAccountBean"
+									columnClasses="Col,Col,widthCol,Col,Col,Col"
+									value="#{customerAccountBean.accounts}"
+									styleClass="datatablecss" cellspacing="0" cellpadding="0">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="ID"></h:outputText>
+										</f:facet>
+										<h:outputText id="customerAccountBeanId"
+											value="#{icustomerAccountBean.account.accountId}"></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="User"></h:outputText>
+										</f:facet>
+										<h:outputText id="customerAccountBeanName"
+											value="#{icustomerAccountBean.username}"></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Billing MSISDN"></h:outputText>
+										</f:facet>
+										<h:outputText id="customerAccountBeanTxt"
+											value="#{icustomerAccountBean.account.billingMsisdn}">
+
+										</h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Company Name"></h:outputText>
+										</f:facet>
+										<h:outputText id="customerAccountBeanDesc"
+											value="#{icustomerAccountBean.account.companyName}">
+
+										</h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="#{msg.view} Quota"></h:outputText>
+										</f:facet>
+										<h:commandLink value="View Quota" class="viewQ"
+											action="#{customerAccountBean.viewQuota()}">
+											<f:ajax render=":dataTblForm:pnlTerminal :dataTblForm:accID"
+												execute="@this"></f:ajax>
+											<f:setPropertyActionListener
+												target="#{customerAccountBean.account}"
+												value="#{icustomerAccountBean}" />
+
+										</h:commandLink>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="#{msg.view} User Data"></h:outputText>
+										</f:facet>
+										<h:commandLink value="View User Data"
+											action="#{customerAccountBean.viewUserData()}">
+											<f:ajax
+												render=" :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID"
+												execute="@this"></f:ajax>
+											<f:setPropertyActionListener
+												target="#{customerAccountBean.account}"
+												value="#{icustomerAccountBean}" />
+
+										</h:commandLink>
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="#{msg.view} Limiters"></h:outputText>
+										</f:facet>
+										<h:commandLink value="View Limiters"
+											action="#{customerAccountBean.viewLimiters()}">
+											<f:ajax
+												render=" :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID"
+												execute="@this"></f:ajax>
+											<f:setPropertyActionListener
+												target="#{customerAccountBean.account}"
+												value="#{icustomerAccountBean}" />
+
+										</h:commandLink>
+									</h:column>
+
+								</h:dataTable>
+
+							</div>
+							<br />
+							<div id="addIPView">
+								<h:panelGroup id="pnlUpdate">
+									<h:panelGroup
+										rendered="#{customerAccountBean.viewLimitersFlag}">
+										<div class="PnlContainer">
+											<div class="PanelHdr">Configure Account Limiters</div>
+											<div class="PanelBody"
+												style="margin: 0px 3px 3px; max-height: 320px;">
+												<table>
+													<tr>
+														<td><span>Account ID</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.accountId}" /></td>
+													</tr>
+
+													<tr>
+														<td><span>Company Name</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.account.companyName}" />
+														</td>
+													</tr>
+
+													<tr>
+														<td><span>Billing MSISDN</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.account.billingMsisdn}" />
+														</td>
+													</tr>
+
+													<tr>
+														<td><h:outputText value="Limiter"
+																style="font-weight: normal;" /></td>
+
+														<td><h:selectOneMenu id="IPInputText"
+																value="#{customerAccountBean.limiter}"
+																converter="com.edafa.web2sms.ui.converter.LimiterConverter">
+																<f:selectItems value="#{customerAccountBean.limiters}"
+																	var="c" itemLabel="#{c.description}" itemValue="#{c}">
+																</f:selectItems>
+															</h:selectOneMenu></td>
+
+														<td><h:commandLink
+																action="#{customerAccountBean.addNewLimiter}">
+																<f:ajax
+																	render=":formStyle:IPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup :formStyle:IPInputText"
+																	execute=":formStyle:IPInputText" />
+																<h:graphicImage library="img" name="add_icon.png" />
+															</h:commandLink></td>
+													</tr>
+
+													<tr>
+														<td><span>Limiters List</span></td>
+
+														<td><h:panelGroup id="IPsTableContainerPanelGroup">
+																<h:dataTable var="ipBean"
+																	value="#{customerAccountBean.account.account.sendingRateLimiters}">
+																	<h:column>
+																		<h:outputText value="Limiter"
+																			style="top:-43px;left:-213px;" />
+																		<h:outputText
+																			value="Description: #{ipBean.description}"
+																			style="left:48px;position:relative" />
+																	</h:column>
+
+																	<h:column>
+																		<h:commandLink
+																			action="#{customerAccountBean.removeLimiter}"
+																			style="position:relative;left:135px;top:4px;width:29px;"
+																			onclick="return confirm('Are you sure, you want to remove this limiter ?');">
+																			<f:setPropertyActionListener
+																				target="#{customerAccountBean.removedLimit}"
+																				value="#{ipBean}" />
+																			<f:ajax execute="@this"
+																				render=":formStyle:IPsTableContainerPanelGroup" />
+																			<h:graphicImage library="img" name="remove_icon.png" />
+																		</h:commandLink>
+																	</h:column>
+																</h:dataTable>
+															</h:panelGroup></td>
+													</tr>
+
+													<tr>
+														<td><br /> <h:commandButton
+																value="Save Acount Limiters"
+																action="#{customerAccountBean.saveLimiter}">
+																<f:ajax execute="@this"
+																	render=":formStyle:pnlUpdate :SearchForm:NotificationMessagesContainerPanelGroup" />
+															</h:commandButton></td>
+
+														<td><br /> <h:commandButton value="Cancel"
+																action="#{customerAccountBean.cancel}">
+																<f:ajax execute="@this"
+																	render=" :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID" />
+															</h:commandButton></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+							</div>
+
+							<div id="viewUserData">
+								<h:panelGroup id="changeDataPnl">
+									<h:panelGroup
+										rendered="#{customerAccountBean.viewUserDataFlag}">
+										<div class="PnlContainer">
+											<div class="PanelHdr">User Data</div>
+											<div class="PanelBody"
+												style="margin: 0px 3px 3px; max-height: 320px;">
+												<table>
+													<tr>
+														<td><span>Account ID</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.accountId}" /></td>
+													</tr>
+
+													<tr>
+														<td><span>Company Name</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.account.companyName}" />
+														</td>
+													</tr>
+
+													<tr>
+														<td><span>Billing MSISDN</span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.account.billingMsisdn}" />
+														</td>
+													</tr>
+													<tr>
+														<td>User Name</td>
+														<td><h:outputText
+																value="#{customerAccountBean.account.username}">
+															</h:outputText></td>
+													</tr>
+													<tr>
+														<td><span>User Phone </span></td>
+														<td><h:inputText id="mobileNumber"
+																value="#{customerAccountBean.account.phoneNumber}" /></td>
+
+													</tr>
+
+													<tr>
+														<td><span>User status </span></td>
+
+														<td><h:outputText
+																value="#{customerAccountBean.account.accountUserLogin.userLoginStatus.name=='BLOCKED' ? 'BLOCKED' : 'NOT BLOCKED'}" />
+														</td>
+
+													</tr>
+
+													<tr>
+														<td><br /> <h:commandButton
+																value="Generate Temp Password"
+																rendered="#{ (customerAccountBean.account.accountUserLogin.userLoginStatus.name=='BLOCKED' ? false : true) and (customerAccountBean.account.phoneNumber == null ? false : true)}"
+																action="#{customerAccountBean.generateTempPass}">
+																<f:ajax execute="@this"
+																	render=":formStyle:IPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup :formStyle:IPInputText
+																		 :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID" />
+															</h:commandButton>
+															
+															 <h:commandButton value="Unblock User"
+																rendered="#{customerAccountBean.account.accountUserLogin.userLoginStatus.name=='BLOCKED' ? true : false}"
+																action="#{customerAccountBean.unblockUser}">
+																<f:ajax execute="@this"
+																	render=":formStyle:IPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup 
+																	:formStyle:IPInputText
+																		 :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID " />
+
+															</h:commandButton> 
+															
+															<h:commandButton
+																action="#{customerAccountBean.saveMobileNumber}"
+																value="Save">
+																<f:ajax
+																	render=":formStyle:IPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup
+																	 :formStyle:IPInputText
+																		 :formStyle:changeDataPnl :formStyle:pnlUpdate :dataTblForm:pnlTerminal :dataTblForm:accID"
+																	execute=":formStyle:mobileNumber" />
+
+															</h:commandButton> 
+															
+															<h:commandButton value="Close"
+																action="#{customerAccountBean.closeUserDataView}">
+																<f:ajax execute="@this"
+																	render=":formStyle:changeDataPnl" />
+															</h:commandButton></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+							</div>
+						</h:form>
+
+						<br />
+					</div>
+				</div>
+
+				<div id="accDetails" title="Quota Info" style="width: 500px;">
+					<h:form id="dataTblForm">
+
+						<h:panelGroup id="pnlTerminal" width="98%">
+							<br></br>
+							<center>
+								<div>
+									<b>Account ID : </b>
+									<h:outputLabel
+										value="#{customerAccountBean.account.account.accountId}"
+										id="accID"></h:outputLabel>
+								</div>
+							</center>
+							<br></br>
+							<div id="addTerminal">
+								<h:panelGrid columns="2" styleClass="tblClass">
+									<h:outputLabel value="Billing MSISDN"></h:outputLabel>
+									<h:outputText
+										value="#{customerAccountBean.quotaInfo.billingMsisdn}"></h:outputText>
+
+									<h:outputLabel value="Consumed Ratio"></h:outputLabel>
+									<h:outputText
+										value="#{(customerAccountBean.quotaInfo.consumedRatio) * 100} %"></h:outputText>
+
+									<h:outputLabel value="Consumed SMS"></h:outputLabel>
+									<h:outputText
+										value="#{customerAccountBean.quotaInfo.consumedSMS}"></h:outputText>
+
+									<h:outputLabel value="Expiry Date"></h:outputLabel>
+									<h:outputText
+										value="#{customerAccountBean.quotaInfo.expiryDate}"></h:outputText>
+
+									<h:outputLabel value="Granted SMS"></h:outputLabel>
+									<h:outputText
+										value="#{customerAccountBean.quotaInfo.grantedSMS}"></h:outputText>
+
+								</h:panelGrid>
+							</div>
+
+						</h:panelGroup>
+					</h:form>
+
+
+					<br />
+				</div>
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

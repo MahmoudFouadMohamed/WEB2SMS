@@ -1,0 +1,30 @@
+package com.edafa.web2sms.acc_manag.utils.configs.enums;
+
+public enum AppSettings {
+	BaseDir("java:app/env/baseDir", "web2sms/");
+	
+	public final String envEnteryName;
+	public String envEntryValue;
+
+	AppSettings(String envEnteryName) {
+		this.envEnteryName = envEnteryName;
+		this.envEntryValue = null;
+	}
+
+	AppSettings(String envEnteryName, String envEntryValue) {
+		this.envEntryValue = envEntryValue;
+		this.envEnteryName = envEnteryName;
+	}
+
+	public void setEnvEntryValue(String envEntryValue) {
+		this.envEntryValue = envEntryValue;
+	}
+
+	public String getEnvEnteryName() {
+		return envEnteryName;
+	}
+
+	public String getEnvEntryValue() {
+		return envEntryValue;
+	}
+}

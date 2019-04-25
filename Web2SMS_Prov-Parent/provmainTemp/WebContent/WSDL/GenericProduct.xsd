@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~~~~~~~~~~~~~~~~ -->
+<!-- XML schema definition used for defining provisioning operations for 
+	the Generic Product. Operations: 1) Company Provisioning 2) Company Subscription 
+	Upgrade 3) Company Subscription Downgrade 4) Company Subscription Suspend 
+	5) Company Subscription Activate 6) Company Subscription Delete 7) User Creation 
+	8) User Deletion 9) User Admin Grant 10) User Admin Removal -->
+<!-- ~~~~~~~~~~~~~~~~ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	jaxb:version="2.0">
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:schemaBindings>
+				<jaxb:package name="com.edafa.web2sms.prov.cloud.model" />
+			</jaxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ROOT ELEMENT DEFINITION -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<xs:element name="GenericProductProvisionRequest">
+		<xs:complexType id="GenericProductProvisionRequest">
+			<xs:choice minOccurs="1" maxOccurs="1">
+
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<!-- ROOT ELEMENTS DEFINITIONS FOR SUBSCRIPTION OPERATIONS -->
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<xs:element name="GenericProductProvision"
+					type="CompanySubscriptionProvisionFullInfoType" />
+				<xs:element name="GenericProductUpgrade"
+					type="CompanySubscriptionProvisionFullInfoType" />
+				<xs:element name="GenericProductDowngrade"
+					type="CompanySubscriptionProvisionFullInfoType" />
+				<xs:element name="GenericProductSuspension" type="ProvisioningBaseType" />
+				<xs:element name="GenericProductActivation" type="ProvisioningBaseType" />
+				<xs:element name="GenericProductDelete" type="ProvisioningBaseType" />
+
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<!-- ROOT ELEMENTS DEFINITIONS FOR USER OPERATIONS -->
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<xs:element name="GenericProductUserCreate" type="CompanyUserProvisionFullInfoType" />
+				<xs:element name="GenericProductUserDelete" type="UserProvisionBaseType" />
+				<xs:element name="GenericProductUserAdminGrant" type="UserProvisionBaseType" />
+				<xs:element name="GenericProductUserAdminRevoke" type="UserProvisionBaseType" />
+
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ~~~~~~~~~~~~~~~~ -->
+	<!-- TYPE DEFINITIONS -->
+	<!-- ~~~~~~~~~~~~~~~~ -->
+	<xs:complexType name="CompanySubscriptionProvisionFullInfoType">
+		<xs:complexContent>
+			<xs:extension base="ProvisioningBaseType">
+				<xs:sequence>
+					<xs:element name="Other" type="OtherData"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CompanyUserProvisionFullInfoType">
+		<xs:complexContent>
+			<xs:extension base="UserProvisionBaseType">
+				<xs:sequence>
+					<xs:element name="Other" type="OtherData"
+						minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="UserProvisionBaseType">
+		<xs:complexContent>
+			<xs:extension base="ProvisioningBaseType">
+				<xs:sequence>
+					<xs:element name="UserID" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ProvisioningBaseType">
+		<xs:sequence>
+			<xs:element name="CompanyID" type="xs:string" />
+			<xs:element name="CompanyDomain" type="xs:string" />
+			<xs:element name="SubscriptionID" type="xs:string" />
+			<xs:element name="ProvisioningID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="36" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AccountHolderID" type="xs:string" />
+			<xs:element name="CallbackURL" type="xs:string" />
+			<xs:element name="MSISDN" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OtherData">
+		<xs:sequence>
+			<xs:element name="producttier" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

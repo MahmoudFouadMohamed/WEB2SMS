@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+  <display-name>Web2SMS_Prov_Service-Ear</display-name>
+  <module>
+    <ejb>Web2SMS_DALayer.jar</ejb>
+  </module>
+  <module>
+      <ejb>Web2SMS_Account_Management_Interfaces.jar</ejb>
+  </module> 
+  <module>
+    <ejb>Web2SMS-Prov_Service_Utils.jar</ejb>
+  </module>
+  <module>
+    <ejb>Web2SMS-Prov_Service_Adapters.jar</ejb>
+  </module>
+  <module>
+    <ejb>Web2SMS-Prov_Service.jar</ejb>
+  </module>
+  <module>
+    <ejb>AppErrorManager.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>Web2SMS-Prov_Service_Web.war</web-uri>
+      <context-root>web2sms/service/prov</context-root>
+    </web>
+  </module>
+  <env-entry>
+    <env-entry-name>java:app/env/basedir</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>web2sms-prov-serice/</env-entry-value>
+  </env-entry>
+</application>

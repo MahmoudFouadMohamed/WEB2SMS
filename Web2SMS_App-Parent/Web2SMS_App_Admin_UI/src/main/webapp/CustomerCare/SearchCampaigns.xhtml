@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/Templates/CustomerCareTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Campaigns</div>
+			<div class="pgContainer">
+
+				<h:messages errorClass="errormessages" infoClass="succeededMessage" />
+
+				<h:form>
+
+					<div class="reversePnl">
+						<div class="reversePnlTitl">
+							<span class="spanTitle">Filter</span>
+						</div>
+						<div class="reversePnlBdy">
+							<table width="100%">
+								<tr>
+									<td>User Name</td>
+									<td><h:inputText value="#{searchCampaignsBean.userName}">
+										</h:inputText></td>
+
+									<td>Account ID</td>
+									<td><h:inputText value="#{searchCampaignsBean.accountID}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+								</tr>
+								
+								<tr>
+									<td>Billing MSISDN</td>
+									<td><h:inputText
+											value="#{searchCampaignsBean.billingMSISDN}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+								
+									<td>Company Name</td>
+									<td>
+										<h:inputText
+											value="#{searchCampaignsBean.companyName}">
+										</h:inputText>
+									</td>
+								</tr>
+
+								<tr>
+									<td>Start Date from</td>
+									<td><h:inputText id="startTime" label="Start Time"
+											styleClass="dtPickerFrom"
+											value="#{searchCampaignsBean.datefrom}">
+											<f:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" />
+										</h:inputText></td>
+									<td>Start Date to</td>
+									<td><h:inputText id="endTime" label="End Time"
+											value="#{searchCampaignsBean.dateto}" styleClass="dtPickerTo">
+											<f:convertDateTime pattern="dd-MM-yyyy HH:mm:ss" />
+										</h:inputText></td>
+								</tr>
+								
+								<tr>
+									<td>Sender Name</td>
+									<td>
+										<h:inputText id="senderName" label="Sender Name"
+											value="#{searchCampaignsBean.senderName}" />
+									</td>
+								</tr>
+								
+								<tr>
+									<td>Status</td>
+									<td colspan="3"><h:selectManyCheckbox id="statusNamesLst"
+											layout="lineDirection" converter="CampaignStatusConv"
+											value="#{searchCampaignsBean.campaignStatusNamesSelected}">
+											<f:selectItems
+												value="#{searchCampaignsBean.campaignStatusNames}"
+												var="status" itemValue="#{status.name} "
+												itemLabel="#{status}" />
+										</h:selectManyCheckbox></td>
+								</tr>
+							</table>
+
+							<h:commandButton value="Filter"
+								action="#{searchCampaignsBean.filter}" />
+						</div>
+					</div>
+
+				</h:form>
+
+				<br /> <br />
+				<div>
+					<h:form id="formStyle">
+						<div class="dataTablePaging">
+							<h:commandLink action="#{searchCampaignsBean.FirstPage}">
+								<img alt="First"
+									src="${facesContext.externalContext.requestContextPath}/img/First#{(searchCampaignsBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{searchCampaignsBean.previousPage}">
+								<img alt="Previous"
+									src="${facesContext.externalContext.requestContextPath}/img/Previous#{(searchCampaignsBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+
+							<h:outputText
+								value="#{general.getCeil((searchCampaignsBean.currentPage)/searchCampaignsBean.pageSize,searchCampaignsBean.rowCount/searchCampaignsBean.pageSize)}"></h:outputText>
+							of
+							<h:outputText
+								value="#{general.getCeil( searchCampaignsBean.rowCount/searchCampaignsBean.pageSize )}"></h:outputText>
+
+							<h:commandLink action="#{searchCampaignsBean.nextPage}">
+								<img alt="Next"
+									src="${facesContext.externalContext.requestContextPath}/img/Next#{(searchCampaignsBean.currentPage+searchCampaignsBean.pageSize >=searchCampaignsBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{searchCampaignsBean.LastPage}">
+								<img alt="Last"
+									src="${facesContext.externalContext.requestContextPath}/img/Last#{(searchCampaignsBean.currentPage+searchCampaignsBean.pageSize >=searchCampaignsBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+
+						</div>
+						<div>
+							<h:dataTable var="isearchCampaignsBean"
+								value="#{searchCampaignsBean.campaigns}"
+								styleClass="datatablecss" cellspacing="0" cellpadding="0">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="ID"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanId"
+										value="#{isearchCampaignsBean.campaignId}"></h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanName"
+										value="#{isearchCampaignsBean.name}"></h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Account"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanAcc"
+										value="#{isearchCampaignsBean.accountUser.account.accountId}"></h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Company Name"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeancmpName"
+										value="#{isearchCampaignsBean.accountUser.account.companyName}"></h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Consumed Quota"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanCreationDate"
+										value="#{isearchCampaignsBean.submittedSMSRatio}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Remaining Quota"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanStartDate"
+										value="#{isearchCampaignsBean.submittedSMSRatio}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Status Bar"></h:outputText>
+									</f:facet>
+									<div title="${isearchCampaignsBean.submittedSMSRatio == 'NaN' ? 0 : general.roundTwoDecimals(isearchCampaignsBean.submittedSMSRatio)} %">
+										<h:panelGroup class="mmagd_2sms_campain_fulll_persentage_bar">
+
+											<div class="mmagd_2sms_campain_fulll_persentage_bar_green"
+												style="width: ${isearchCampaignsBean.submittedSMSRatio == 'NaN' ? 0 : isearchCampaignsBean.submittedSMSRatio/2}px"></div>
+
+										</h:panelGroup>
+									</div>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Status"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeanStatus"
+										value="#{isearchCampaignsBean.status.campaignStatusName}">
+
+									</h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="SMS Count"></h:outputText>
+									</f:facet>
+									<h:outputText id="searchCampaignsBeansmscount"
+										value="#{isearchCampaignsBean.smsDetails.SMSCount}">
+
+									</h:outputText>
+								</h:column>
+
+
+								<h:column>
+									<script>
+										function openTab(data) 
+										{
+											if (data.status == "success") 
+											{
+												window.open('#{request.contextPath}/DownloadReport');
+											}// end if
+										}// end of function displayProgress
+									</script>
+									<f:facet name="header">
+										<h:outputText value="Export"></h:outputText>
+									</f:facet>
+									<h:commandLink
+										action="#{searchCampaignsBean.requestDetailedReportForCampaign(isearchCampaignsBean.campaignId)}"
+										value="#{msg.request_report}">
+<!-- 										<f:ajax execute="@this" onevent="openTab" /> -->
+										<f:setPropertyActionListener
+											target="#{searchCampaignsBean.campaign}"
+											value="#{isearchCampaignsBean}" />
+									</h:commandLink>
+
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="#{msg.view}"></h:outputText>
+									</f:facet>
+									<h:commandLink value="#{msg.view}" class="editLink"
+										action="#{searchCampaignsBean.view}">
+										<f:setPropertyActionListener
+											target="#{searchCampaignsBean.campaign}"
+											value="#{isearchCampaignsBean}" />
+									</h:commandLink>
+								</h:column>
+							</h:dataTable>
+						</div>
+						<br />
+
+
+						<div id="trxView">
+							<h:panelGrid id="pnlUpdate" columns="1"
+								rendered="#{searchCampaignsBean.editFlag}" width="100%">
+								<div class="PnlContainer">
+									<div class="PanelHdr">Transaction Details</div>
+									<div class="PanelBody"
+										style="margin: 0px 3px 3px; max-height: 320px;">
+										<table width="95%">
+											<tr>
+												<td><h:panelGrid columns="4" class="tblClass">
+														<h:outputText value="Campaign ID"></h:outputText>
+														<h:outputText id="CampaignView_Id"
+															value="#{searchCampaignsBean.campaign.campaignId}"></h:outputText>
+
+														<h:outputText value="Campaign Name"></h:outputText>
+														<h:outputText id="CampaignView_Name"
+															value="#{searchCampaignsBean.campaign.name}"></h:outputText>
+
+														<h:outputText value="Account ID"></h:outputText>
+														<h:outputText id="CampaignView_AccID"
+															value="#{searchCampaignsBean.campaign.accountUser.account.accountId}"></h:outputText>
+
+
+														<h:outputText value="Company Name"></h:outputText>
+														<h:outputText id="CampaignView_cmpName"
+															value="#{searchCampaignsBean.campaign.accountUser.account.companyName}"></h:outputText>
+
+														<h:outputText value="Account Current Status"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.accountUser.account.status.accountStatusName}"></h:outputText>
+
+														<h:outputText value="Account Admin"></h:outputText>
+														<h:outputText id="CampaignView_AccAdmin"
+															value="#{searchCampaignsBean.campaign.accountUser.username}"></h:outputText>
+
+
+														<h:outputText value="Account Billing  MSISDN"></h:outputText>
+														<h:outputText id="CampaignView_Accmsisdn"
+															value="#{searchCampaignsBean.campaign.accountUser.account.billingMsisdn}"></h:outputText>
+
+														<h:outputText value="Account Tier ID"></h:outputText>
+														<h:outputText id="CampaignView_tierID"
+															value="#{searchCampaignsBean.campaign.accountUser.account.tier.tierId}"></h:outputText>
+
+														<h:outputText value="Account Tier Name"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.accountUser.account.tier.tierName}"></h:outputText>
+
+														<h:outputText value="Account Rate Plan"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.accountUser.account.tier.ratePlan}"></h:outputText>
+
+														<h:outputText value="Account Quota"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.accountUser.account.tier.quota}"></h:outputText>
+
+														<h:outputText value="Account Quota Description"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.accountUser.account.tier.description}"></h:outputText>
+
+														<h:outputText value="Campaign Execution Action"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.action.campaignActionName}"></h:outputText>
+
+														<h:outputText value="Campaign Start Date"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.startTimestamp}"></h:outputText>
+
+														<h:outputText value="Campaign End Date"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.endTimestamp}"></h:outputText>
+
+														<h:outputText value="Campaign Execution Handler ID"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.handlerId}"></h:outputText>
+
+														<h:outputText value="Campaign Execution Comments"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.comments}"></h:outputText>
+
+														<h:outputText value="Submitted SMS Count"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.submittedSmsCount}"></h:outputText>
+
+														<h:outputText value="Submitted SMS Segment Count"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignExecution.submittedSmsSegCount}"></h:outputText>
+
+														<h:outputText value="Scheduled"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignScheduling.scheduledFlag}"></h:outputText>
+
+														<h:outputText value="Scheduled Start Time"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignScheduling.scheduleStartTimestamp}"></h:outputText>
+
+														<h:outputText value="Scheduled End Time"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignScheduling.scheduleEndDate}"></h:outputText>
+
+														<h:outputText value="Scheduled Frequency"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.campaignScheduling.scheduleFrequency.scheduleFreqName}"></h:outputText>
+
+														<h:outputText value="Campaign Creation Date"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.creationTimestamp}"></h:outputText>
+
+														<h:outputText value="Campaign Description"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.description}"></h:outputText>
+
+														<h:outputText value="SMS Language"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.language.languageName}"></h:outputText>
+
+
+														<h:outputText value="SMS Sender Name"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.senderName}"></h:outputText>
+
+														<h:outputText value="SMS Count"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.SMSCount}"></h:outputText>
+
+														<h:outputText value="SMS Segment Count"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.SMSSegCount}"></h:outputText>
+
+														<h:outputText value="SMS Registered Delivery"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.registeredDelivery}"></h:outputText>
+
+														<h:outputText value="SMS Text"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.smsDetails.SMSText}"></h:outputText>
+
+														<h:outputText value="Campaign Status"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.status.campaignStatusName}"></h:outputText>
+
+
+														<h:outputText value="Campaign Status"></h:outputText>
+														<h:outputText
+															value="#{searchCampaignsBean.campaign.status.campaignStatusName}"></h:outputText>
+
+
+														<h:outputText value="Submitted Ratio"></h:outputText>
+														<h:outputText
+															value="#{general.roundTwoDecimals(searchCampaignsBean.campaign.submittedSMSRatio)}"></h:outputText>
+
+													</h:panelGrid></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</h:panelGrid>
+						</div>
+					</h:form>
+
+					<br />
+				</div>
+
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

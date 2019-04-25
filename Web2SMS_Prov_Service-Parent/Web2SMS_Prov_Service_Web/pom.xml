@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>Web2SMS_Prov_Service_Web</artifactId>
+	<packaging>war</packaging>
+
+	<name>Web2SMS_Prov_Service_Web</name>
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Prov_Service-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Prov_Service</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>provided</scope>
+		</dependency>
+                <dependency>
+                    <groupId>${project.parent.groupId}</groupId>
+                    <artifactId>Web2SMS_Account_Management_Interfaces</artifactId>
+                    <version>${project.parent.version}</version>
+                    <type>ejb</type>
+                    <scope>provided</scope>
+                </dependency>
+	</dependencies>
+	<build>
+		<finalName>Web2SMS-Prov_Web</finalName>
+		<!-- <resources> <resource> <directory>WebContent/WEB-INF/</directory> 
+			<targetPath>${project.build.directory}/Web2SMS-Prov_Web/WEB-INF</targetPath> 
+			</resource> </resources> -->
+	</build>
+</project>

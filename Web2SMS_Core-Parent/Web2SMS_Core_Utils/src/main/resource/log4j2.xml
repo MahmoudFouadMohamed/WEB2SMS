@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<Configuration>
+    <Appenders>
+        <RollingRandomAccessFile name="WEB2SMS_APP_UTILS_appender"  fileName="web2sms-core/logs/web2sms_app.log"
+                                 filePattern="web2sms-core/logs/web2sms_app.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SMSGW_APP_UTILS_appender"  fileName="web2sms-core/logs/smsgw_app.log" 
+                                 filePattern="web2sms-core/logs/smsgw_app.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SMSGW_SMS_appender"  fileName="web2sms-core/logs/smsgw_sms.log" 
+                                 filePattern="web2sms-core/logs/smsgw_sms.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SMSGW_ENGINE_appender"  fileName="web2sms-core/logs/smsgw_engine.log" 
+                                 filePattern="web2sms-core/logs/smsgw_engine.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="CAMP_EXE_ENGINE_appender"  fileName="web2sms-core/logs/web2sms_camp_engine.log" 
+                                 filePattern="web2sms-core/logs/web2sms_camp_engine.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================      
+        <RollingRandomAccessFile name="CAMP_EXE_appender"  fileName="web2sms-core/logs/web2sms_camp_exe.log" 
+                                 filePattern="web2sms-core/logs/web2sms_camp_exe.log.%d{yyyy-MM-dd}" append="true">           
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================      
+        <RollingRandomAccessFile name="ACCOUNT_HANDLER_appender"  fileName="web2sms-core/logs/web2sms_acct_handler.log" 
+                                 filePattern="web2sms-core/logs/web2sms_acct_handler.log.%d{yyyy-MM-dd}" append="true">           
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================    
+        <RollingRandomAccessFile name="AGG_CDR_appender"  fileName="web2sms-core/logs/web2sms_agg_cdr.log" 
+                                 filePattern="web2sms-core/logs/web2sms_agg_cdr.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================      
+        <RollingRandomAccessFile name="QUOTA_AGG_TASK_appender"  fileName="web2sms-core/logs/web2sms_quota_agg.log" 
+                                 filePattern="web2sms-core/logs/web2sms_quota_agg.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================      
+        <RollingRandomAccessFile name="CDR_TASK_MONITOR_appender"  fileName="web2sms-core/logs/web2sms_cdr_task_monitor.log" 
+                                 filePattern="web2sms-core/logs/web2sms_cdr_task_monitor.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================      
+        <RollingRandomAccessFile name="DETAILED_CDR_appender"  fileName="web2sms-core/logs/web2sms_detailed_cdr.log" 
+                                 filePattern="web2sms-core/logs/web2sms_detailed_cdr.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SCHEDULER_appender"  fileName="web2sms-core/logs/web2sms_scheduler.log" 
+                                 filePattern="web2sms-core/logs/web2sms_scheduler.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SMS_API_appender"  fileName="web2sms-core/logs/web2sms_sms-api_engine.log" 
+                                 filePattern="web2sms-core/logs/web2sms_sms-api_engine.log.%d{yyyy-MM-dd}" append="true">         
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+        ===================================================================================================
+
+    <Loggers>
+        <Root level="trace">
+        </Root>
+        ===================================================================================================
+        <AsyncLogger name="WEB2SMS_APP_UTILS" level="INFO">
+            <AppenderRef ref="WEB2SMS_APP_UTILS_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="SMSGW_APP_UTILS" level="INFO">
+            <AppenderRef ref="SMSGW_APP_UTILS_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="SMSGW_SMS" level="INFO">
+            <AppenderRef ref="SMSGW_SMS_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="SMSGW_ENGINE" level="INFO">
+            <AppenderRef ref="SMSGW_ENGINE_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="CAMP_EXE_ENGINE" level="INFO">
+            <AppenderRef ref="CAMP_EXE_ENGINE_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="CAMP_EXE" level="INFO">
+            <AppenderRef ref="CAMP_EXE_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="ACCOUNT_HANDLER" level="INFO">
+            <AppenderRef ref="ACCOUNT_HANDLER_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="AGG_CDR" level="INFO">
+            <AppenderRef ref="AGG_CDR_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="QUOTA_AGG_TASK" level="INFO">
+            <AppenderRef ref="QUOTA_AGG_TASK_appender"/>
+        </AsyncLogger>            
+        ===================================================================================================
+        <AsyncLogger name="CDR_TASK_MONITOR" level="INFO">
+            <AppenderRef ref="CDR_TASK_MONITOR_appender"/>
+        </AsyncLogger>            
+        ===================================================================================================
+        <AsyncLogger name="DETAILED_CDR" level="INFO">
+            <AppenderRef ref="DETAILED_CDR_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="SCHEDULER" level="INFO">
+            <AppenderRef ref="SCHEDULER_appender"/>
+        </AsyncLogger>           
+        ===================================================================================================
+        <AsyncLogger name="SMS_API" level="INFO">
+            <AppenderRef ref="SMS_API_appender"/>
+        </AsyncLogger>
+    </Loggers>
+</Configuration>

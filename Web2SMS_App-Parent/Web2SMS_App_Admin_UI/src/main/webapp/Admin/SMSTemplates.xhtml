@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition
+	template="/WEB-INF/Templates/AdministratorTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">SMS Ready Templates</div>
+			<div class="pgContainer">
+
+				<h:messages errorClass="errormessages" infoClass="succeededMessage" />
+				<div class="PanelBody">
+					<div class="PnlContainer">
+						<div class="PanelHdr">#{(sMSTemplateBean.editFlag)?
+							msg.update : msg.add} Ready Template</div>
+						<div class="PanelBody" style="overflow-x: hidden;">
+							<table>
+								<tr>
+									<td>
+										<div class="editAddDiv">
+											<h:form id="editAddForm">
+												<h:panelGrid columns="2">
+													<h:outputText value="Name"></h:outputText>
+													<h:inputText id="smsTemplateName" label="Name"
+														value="#{sMSTemplateBean.templateModel.templateName}"></h:inputText>
+
+													<h:outputText value="Text"></h:outputText>
+													<h:inputTextarea id="smsTemplateTxt" label="Text"
+														value="#{sMSTemplateBean.templateModel.text}"
+														onkeyup="updateCountdown();"></h:inputTextarea>
+
+													<h:outputText value="Description"></h:outputText>
+													<h:inputTextarea id="smsTemplateDesc" label="Description"
+														value="#{sMSTemplateBean.templateModel.description}"></h:inputTextarea>
+
+												</h:panelGrid>
+												<h:inputHidden value="#{sMSTemplateBean.languageSelected}"
+													id="languageSelected" />
+
+												<h:commandLink value="Choose Accounts"
+													action="#{sMSTemplateBean.viewDetails}" class="viewDetails">
+													<f:ajax execute="@this" render=" :editAddForm:pnlview" />
+												</h:commandLink>
+												<br></br>
+												<div id="detailsView">
+													<h:panelGroup id="pnlview">
+														<h:panelGroup id="pnlview2"
+															rendered="#{sMSTemplateBean.viewDetailsFlag}">
+															<table>
+																<thead>
+																	<tr>
+																		<h:graphicImage library="img" name="SearchIcon.png"
+																			style="position:relative;top:5px;" />
+																		<h:inputText
+																			styleClass="mmagd_2sms_campain_txt_field_erea mmagd_2sms_contact_page_input_padding"
+																			type="text" size="16"
+																			value="#{sMSTemplateBean.searchValue}">
+																			<f:ajax event="keyup"
+																				listener="#{sMSTemplateBean.searchAccount}"
+																				render=":editAddForm:pnlview" />
+																		</h:inputText>
+																	</tr>
+																</thead>
+																<tr>
+																	<td><h:selectManyCheckbox
+																			value="#{sMSTemplateBean.selectedAccounts}"
+																			layout="pageDirection" layoutWidth="6"
+																			styleClass="selection"
+																			converter="com.edafa.web2sms.ui.converter.AccountConverter">
+																			<f:selectItems value="#{sMSTemplateBean.accounts}"
+																				var="last" itemLabel="#{last.companyName}"
+																				itemValue="#{last}" />
+																		</h:selectManyCheckbox></td>
+																</tr>
+															</table>
+														</h:panelGroup>
+													</h:panelGroup>
+												</div>
+
+
+
+												<h:commandButton action="#{sMSTemplateBean.add}"
+													onclick="if(#{sMSTemplateBean.editFlag})return confirm('#{msg.areYouSureUpdate} (#{sMSTemplateBean.templateModel.templateName}) ?');"
+													value="#{(sMSTemplateBean.editFlag)? msg.update : msg.add} " />
+
+												<h:commandButton type="button" value="#{msg.cancel}"
+													onclick="window.location.replace(window.location.href);" />
+
+											</h:form>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<br />
+				<div>
+					<h:form id="formStyle">
+						<div class="dataTablePaging">
+							<h:commandLink action="#{sMSTemplateBean.FirstPage}">
+								<img alt="First"
+									src="${facesContext.externalContext.requestContextPath}/img/First#{(sMSTemplateBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{sMSTemplateBean.previousPage}">
+								<img alt="Previous"
+									src="${facesContext.externalContext.requestContextPath}/img/Previous#{(sMSTemplateBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+
+							<h:outputText
+								value="#{general.getCeil((sMSTemplateBean.currentPage)/sMSTemplateBean.pageSize,sMSTemplateBean.rowCount/sMSTemplateBean.pageSize)}"></h:outputText>
+							of
+							<h:outputText
+								value="#{general.getCeil( sMSTemplateBean.rowCount/sMSTemplateBean.pageSize )}"></h:outputText>
+
+							<h:commandLink action="#{sMSTemplateBean.nextPage}">
+								<img alt="Next"
+									src="${facesContext.externalContext.requestContextPath}/img/Next#{(sMSTemplateBean.currentPage+sMSTemplateBean.pageSize >=sMSTemplateBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{sMSTemplateBean.LastPage}">
+								<img alt="Last"
+									src="${facesContext.externalContext.requestContextPath}/img/Last#{(sMSTemplateBean.currentPage+sMSTemplateBean.pageSize >=sMSTemplateBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+
+						</div>
+						<div>
+							<h:dataTable var="isMSTemplateBean"
+								columnClasses="Col,Col,widthCol,Col,Col,Col"
+								value="#{sMSTemplateBean.templateModels}"
+								styleClass="datatablecss" cellspacing="0" cellpadding="0">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="ID"></h:outputText>
+									</f:facet>
+									<h:outputText id="sMSTemplateBeanId"
+										value="#{isMSTemplateBean.templateId}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name"></h:outputText>
+									</f:facet>
+									<h:outputText id="sMSTemplateBeanName"
+										value="#{isMSTemplateBean.templateName}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Text"></h:outputText>
+									</f:facet>
+									<h:outputText id="sMSTemplateBeanTxt"
+										value="#{isMSTemplateBean.text}">
+
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Description"></h:outputText>
+									</f:facet>
+									<h:outputText id="sMSTemplateBeanDesc"
+										value="#{isMSTemplateBean.description}">
+
+									</h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="#{msg.delete}"></h:outputText>
+									</f:facet>
+									<h:commandLink value="Delete"
+										onclick="return confirm('#{msg.areYouSureDelete} (#{isMSTemplateBean.templateName}) ?');"
+										action="#{sMSTemplateBean.delete(isMSTemplateBean.templateId)}">
+										<f:ajax render="@form"></f:ajax>
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="#{msg.update}"></h:outputText>
+									</f:facet>
+									<h:commandLink value="#{msg.update}" class="editLink"
+										action="#{sMSTemplateBean.edit(isMSTemplateBean.templateId)}"></h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="accounts"></h:outputText>
+									</f:facet>
+									<h:commandLink value="View accounts" class="viewQ">
+										<f:setPropertyActionListener
+											target="#{sMSTemplateBean.templateAcc}"
+											value="#{isMSTemplateBean}" />
+										<f:ajax
+											render=":formStyle:pnlTerminal :formStyle:TemplateName"
+											execute="@this"></f:ajax>
+
+									</h:commandLink>
+								</h:column>
+							</h:dataTable>
+							<div id="accDetails" title="Accounts" style="width: 500px;">
+								<h:panelGroup id="pnlTerminal" width="98%">
+									<br></br>
+									<center>
+										<div>
+											<b>Template Name : </b>
+											<h:outputLabel
+												value="#{sMSTemplateBean.templateAcc.templateName}"
+												id="TemplateName"></h:outputLabel>
+										</div>
+									</center>
+									<br></br>
+									<div id="add_Terminal">
+										<h:panelGrid columns="2" styleClass="tblClass">
+											<h:dataTable
+												value="#{sMSTemplateBean.templateAcc.accountsList}" var="i"
+												styleClass="datatablecss" cellspacing="0" cellpadding="0">
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="company name"></h:outputText>
+													</f:facet>
+													<h:outputText value="#{i.companyName}"></h:outputText>
+												</h:column>
+
+											</h:dataTable>
+										</h:panelGrid>
+									</div>
+
+								</h:panelGroup>
+
+
+								<br />
+							</div>
+						</div>
+					</h:form>
+
+					<br />
+				</div>
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

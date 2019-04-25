@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta name="ROBOTS" content="noindex, nofollow ,noarchive, nocache, nosnippet, noodp, noydir" />
+	<f:loadBundle basename="resources.application" var="msg" />
+
+	<title>WEB2SMS</title>
+
+	<link
+		href="${facesContext.externalContext.requestContextPath}/resources/css/smoothness/jquery-ui-1.10.1.custom.css"
+		rel="stylesheet" />
+	<link
+		href="${facesContext.externalContext.requestContextPath}/resources/css/StyleAll.css"
+		rel="stylesheet" />
+	<h:outputScript name="js/jquery-1.9.1.js" />
+	<h:outputScript name="js/jquery-ui-1.10.1.custom.js" />
+	<h:outputScript name="js/jquery-ui-timepicker-addon.js" />
+	<h:outputScript name="js/jquery.corner.js" />
+	<h:outputScript name="js/script.js" />
+</h:head>
+<body>
+	<div id="Header">
+
+		<div id="HdrLeft">
+			<a> <h:graphicImage name="img/Voda.png" alt="Logo" styleClass="image-logo " />
+			</a>
+		</div>
+		<div id="HdrCenter">
+			<br></br> <b>Vodafone Egypt</b> <br></br> Web 2 SMS
+		</div>
+		<div id="HdrRight">
+			<h:form>
+				Welcome,<b> #{(sessionScope["user"]).username} </b>&nbsp;	<h:commandLink value="LogOut"
+					action="#{systemLogin.logOut}" style="color: white;"></h:commandLink>
+				<br />
+
+			</h:form>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

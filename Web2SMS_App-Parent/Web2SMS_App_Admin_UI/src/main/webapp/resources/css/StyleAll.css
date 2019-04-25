@@ -1,0 +1,947 @@
+@CHARSET "UTF-8";
+
+html, div, map, dt, isindex, form {
+	border: 0 none;
+	display: block;
+}
+
+html {
+	color: black;
+	font-family: Helvetica, Arial;
+	font-size: 14px;
+}
+
+body, div, ul, ol, li {
+	border: medium none;
+	margin: 0;
+	outline: medium none;
+	padding: 0;
+	vertical-align: top;
+}
+
+body {
+	background-color: #F0F0F0;
+	display: block;
+	position: relative;
+	width: 98%;
+	margin: auto;
+	color: #525252;
+	font: 14px Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #525252;
+}
+
+iframe {
+	width: 100%;
+	height: 400px;
+	border: 0 none;
+}
+
+textarea {
+	height: 75px;
+	width: 370px;
+}
+
+select {
+	min-width: 156px;
+}
+
+/*----------------------------------------*/
+#Header {
+	clear: both;
+	width: 100%;
+	background: url("../img/HDR.png") #FB0000 !important;
+	color: white;
+	border: 1px solid #BD0000;
+	height: 50px !important;
+}
+
+#Header #HdrLeft {
+	float: left;
+	display: inline;
+	float: left;
+	height: 52px !important;
+	margin-top: 0;
+	padding-left: 7px;
+	padding-top: 4px;
+	width: 55px !important;
+}
+
+#Header #HdrLeft a:link, #Header #HdrLeft a:visited, #Header #HdrLeft a:hover
+	{
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#Header #HdrCenter {
+	float: left;
+	margin-top: -5px;
+}
+
+#Header #HdrRight {
+	float: right;
+}
+
+#container {
+	clear: both;
+	width: 100%;
+	padding-top: 7px;
+}
+/*-----------------------#navigation----------------------------------*/
+#container #navigation {
+	float: left;
+	width: 15%;
+	background: white;
+	border: 1px solid #a1a1a1;
+	min-height: 450px;
+}
+
+#navItems {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-indent: 5px;
+}
+
+#navItems div {
+	background: #a1a1a1;
+	font-size: 16px;
+	color: #F4F4F4;
+	font-weight: bold;
+	padding: 1px;
+}
+
+#navItems ul li {
+	font-size: 14px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-top: 3px;
+	list-style-type: none;
+	border-bottom: 1px dotted #a1a1a1;
+	height: 15px;
+	overflow: hidden;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+#navItems ul li a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+}
+
+#navItems ul li a:HOVER {
+	cursor: pointer;
+	color: red;
+}
+
+#navItems ul li a:LANG {
+	color: blue;
+}
+/*---------------------------Error page--------------*/
+.errorBody {
+	background: #F4F4F4;
+}
+
+.errorallDiv {
+	background: none repeat scroll 0 0 white;
+	border-radius: 20px 20px 20px 20px;
+	margin: auto;
+	position: relative;
+	top: 100px;
+	width: 900px;
+}
+
+.errdiv {
+	clear: both;
+}
+
+.errImg {
+	float: left;
+}
+
+.errText {
+	font-size: 40px;
+	font-weight: bold;
+	padding-left: 350px;
+	padding-right: 9px;
+}
+/*-----------------------------------usrLogin------------------*/
+#usrLogin {
+	background-color: red;
+	position: relative;
+}
+
+#loginForm {
+	background-color: white;
+	height: 200px;
+	width: 400px;
+	font-family: sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 9% 0 0 -20%;
+	padding: 6px;
+}
+
+#loginTitle {
+	font-size: 40px;
+	border-bottom: 3px solid #a1a1a1;
+	height: 60px;
+	line-height: 55px;
+	padding-left: 65px;
+	background: url("../img/Voda.png") no-repeat left;
+}
+
+#loginBody {
+	width: 100%;
+	padding: 9px;
+	font-size: large;
+	font-weight: bold;
+}
+/* .btnRed{
+	background: url("../img/btn_bg.png");
+	
+} */
+/*-----------------------#pgContent------------------*/
+.tblLsts input {
+	border: 1px solid #DDDDDD;
+	font-size: 11px;
+	padding-right: 3px;
+}
+
+.scrolled {
+	overflow: auto;
+}
+
+.pgContent {
+	width: 84%;
+	background: white;
+	border: 1px solid #a1a1a1;
+	float: right;
+	min-height: 450px;
+}
+
+.pgTitle {
+	background: #a1a1a1;
+	font-size: 20px;
+	color: #F4F4F4;
+	font-weight: bold;
+	text-indent: 5px;
+	padding: 2px;
+}
+
+.unit {
+	font-size: 9px;
+}
+
+.tabadiv {
+	height: 25px !important;
+	background: url("../img/tabs_bg_hover.png") repeat-x white;
+	float: left;
+	vertical-align: middle;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 1px;
+	margin-bottom: 0px;
+	padding-top: 3px;
+	border: 1px solid #A1A1A1;
+}
+
+.tabadiv:HOVER {
+	padding-top: 5px;
+	float: left;
+}
+
+.toggledTab {
+	background-image: url( ../img/tabs_bg.png );
+	padding-top: 5px;
+	border-bottom: 1px solid white;
+}
+
+.tabs ul {
+	background: url("../img/tabs_bg_hover.png") repeat-x white;
+	height: 30px;
+}
+
+.tabs li {
+	list-style-type: none;
+	display: inline;
+	height: 30px;
+}
+
+.tabs li a {
+	height: 30px;
+	text-decoration: none;
+	color: inherit;
+}
+
+.tabpanels {
+	margin-top: 32px;
+	width: 99.5%;
+	border: 1px solid #A1A1A1;
+}
+
+.hide {
+	display: none;
+}
+
+.hideNav {
+	display: none;
+}
+
+.subMenu {
+	z-index: 3;
+	left: 98%;
+	position: relative;
+	top: -18px;
+	border: 2px solid #A1A1A1;
+	background-color: white !important;
+	color: #F4F4F4 !important;
+	font-size: 11px !important;
+	color: #525252 !important;
+	font-weight: normal !important;
+}
+
+.subMenu ul li {
+	overflow: visible !important;
+}
+
+.addDiv {
+	background-color: white;
+}
+
+.editDiv {
+	background-color: #FFE7DD;
+}
+
+.tblHeader {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+	width: 98.5%;
+	margin: auto;
+}
+
+.datatablecss {
+	width: 98.5%;
+	border: 1px solid #CAE8EA;
+	margin: auto;
+}
+
+.datatablecss tr {
+	border-bottom: 1px solid #CAE8EA;
+	background: white;
+}
+
+.datatablecss tr:nth-child(even) {
+	background: #d4f3f6;
+}
+
+.datatablecss td {
+	text-align: center;
+	border-left: 1px solid #CAE8EA;
+}
+
+.datatablecss  thead {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+}
+
+.datatablecss  thead tr {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+}
+
+.widthCol {
+	max-width: 200px;
+}
+
+.datatablecssTXTAlign td {
+	border-left: 1px solid #CAE8EA;
+}
+
+.datatablecss tbody tr:hover {
+	background: #E4E4E4;
+}
+
+.datatablecss  thead:hover {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+}
+
+.PanelHdr {
+	background: url("../img/bullet_arrow_down.png") #F80000 no-repeat right;
+	background-color: #F80000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 2px;
+}
+
+.PanelBody {
+	font-size: 13px;
+	overflow: auto;
+	margin: 2px;
+}
+
+.PnlContainer {
+	border: 1px solid #F80000;
+}
+
+.slctMenuClass {
+	background: #F4F4F4;
+}
+
+.slctMenuClass table tbody td {
+	background: #F4F4F4;
+}
+
+.pgContainer {
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+	background-color: white;
+}
+
+.tblClass tr:nth-child(even) {
+	background: #F4F4F4;
+}
+
+.tblClass td:nth-child(odd) {
+	width: 15%;
+	font-weight: bold;
+}
+
+.tblClass td:nth-child(even) {
+	width: 35%;
+}
+
+.tblClass, .tblClass3 {
+	width: 99%;
+}
+/* */
+.tblClassW td:nth-child(odd) {
+	width: auto !important;
+	font-weight: bold;
+}
+
+.tblClassW td:nth-child(even) {
+	width: auto !important;
+}
+/*  */
+.tblClass3 tr:nth-child(odd) {
+	background: #F4F4F4;
+}
+
+.tblClass3 td:nth-child(1) {
+	width: 10%;
+}
+
+.tblClass3 td:nth-child(2), .tblClass3 td:nth-child(4) {
+	width: 15%;
+}
+
+.tblClass3 td:nth-child(3), .tblClass3 td:nth-child(5) {
+	width: 30%;
+}
+
+.tblClassDT {
+	width: 95%;
+	text-align: left;
+	background: #F0F0F0;
+}
+
+.tblClassDT th {
+	background: #d1cdcf;
+}
+
+.tblClassDT td:nth-child(0) {
+	width: 10%;
+}
+
+.refreshTbl td:nth-child(1) {
+	width: 5%;
+}
+
+.tblLsts {
+	max-height: 100px;
+	width: 99%;
+}
+
+.tblLsts th {
+	text-align: left;
+}
+
+.tblLsts th, .pnlHeader {
+	background-color: #A1A1A1;
+	color: #F4F4F4;
+}
+
+.tblLsts td {
+	vertical-align: top;
+}
+
+.tblLsts td:nth-child(even) {
+	background-color: #F4F4F4;
+}
+
+.trxDataTblhover tbody tr:hover {
+	background-color: #d1d1d1;
+}
+
+.trxDataTblhover  thead:hover {
+	background-color: #A1A1A1;
+	color: #F4F4F4;
+}
+
+.btnsDiv {
+	float: right;
+}
+
+.navMainb {
+	background: url("../img/bullet_arrow_left.png") no-repeat right;
+	overflow: visible !important;
+}
+
+.dataTablePaging {
+	margin: auto;
+	width: 99%;
+	font-size: large;
+	text-align: center;
+}
+
+.dataTablePaging a {
+	cursor: pointer;
+	color: white;
+	text-decoration: none;
+}
+
+.pageNum {
+	text-align: center;
+	clear: none;
+}
+
+.succeededMessage {
+	background: #dcfbdc;
+	border: 1px solid green;
+	margin: 5px;
+	padding: 5px;
+	list-style-type: none;
+}
+
+.failedMessage {
+	background: #fef6f3;
+	border: 1px solid red;
+	margin: 5px;
+	padding: 5px;
+}
+
+.errormessages {
+	background: #fef6f3;
+	border: 1px solid red;
+	margin: 10px;
+	padding: 5px;
+	list-style-type: none;
+}
+
+.loginResultMessages {
+	color: red;
+	font-size: small;
+	font-weight: normal;
+	pause: 5px;
+}
+
+.errormessageslogin {
+	list-style-type: none;
+}
+
+.spanTitle {
+	font-weight: bold;
+	padding-left: 16px;
+	background: url("../img/arrow_bullet.png") no-repeat left;
+}
+
+.autuoMargin {
+	margin: auto;
+	background: url("../img/tbldata_th_hdr.png") repeat-x scroll 0 0 #CAE8EA;
+	border: 1px solid #CAE8EA;
+}
+
+.innerDivWidth {
+	width: 98.5%;
+}
+
+.failAll {
+	padding-left: 18px;
+	background: url("../img/fail.png") no-repeat left;
+	text-decoration: none;
+}
+
+.failAllDb {
+	padding-left: 18px;
+	background: url("../img/failAll.png") no-repeat left;
+	text-decoration: none;
+}
+
+.successAll {
+	padding-left: 18px;
+	background: url("../img/success.png") no-repeat left;
+	text-decoration: none;
+}
+
+.reversePnl {
+	background-color: #f4f4f4;
+}
+
+.reversePnlTitl {
+	background-color: #d1cdcf;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.note {
+	font-size: smaller;
+}
+
+.greyBackground {
+	background: #d1cdcf;
+	margin: auto;
+}
+
+.AggInvaildIntegrity {
+	background: #dfffff !important;
+}
+
+.integrityInvalidTR {
+	background: #fddddd !important;
+}
+
+.invaildEncryptionTR {
+	background: #ffffa3 !important;
+}
+
+.mmagd_2sms_campain_fulll_persentage_bar {
+	width: 50px;
+	border: 1px solid #ccc;
+	height: 20px;
+	background-color: #fff;
+	margin-top: -3px;
+	display: block !important;
+}
+
+.mmagd_2sms_campain_fulll_persentage_bar_green {
+	/*width: 10px;*/
+	background-color: #428600;
+	height: 20px;
+	display: block !important;
+}
+
+.mmagd_2sms_campain_fulll_persentage_bar_orange {
+	width: 10px;
+	background-color: #fecb00;
+	height: 20px;
+	display: block !important;
+}
+/*-----------------------Cntrols--------------*/
+.txtInput {
+	height: 12px;
+}
+
+#addTerminal {
+	border: 1px solid #A1A1A1;
+	padding: 2px;
+}
+
+.txtSearch {
+	border: none;
+	width: 90%;
+	padding: 3px;
+}
+
+.divSearch {
+	border: 1px solid #A1A1A1;
+	background: url("../img/SearchIcon.png") no-repeat right;
+	padding: 2px;
+	height: 20px;
+}
+
+.terminalResult, .redClass {
+	color: red;
+}
+
+.xalign {
+	text-align: right;
+}
+
+/*---------------------------- Monitor ---------------------------------*/
+.monitorNavContainer {
+	background: url("../img/HDR.png") #FB0000 !important;
+	color: white;
+	font-weight: bold;
+	/*    border: 2px solid #A1A1A1; */
+	margin-bottom: 5px;
+	margin-top: -5px;
+	padding: 5px;
+}
+
+.monitorNavContainer a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+}
+
+.monitorNavContainer a:HOVER {
+	cursor: pointer;
+	color: grey;
+}
+
+.failStatusLabel {
+	color: red;
+	font-weight: bold;
+}
+
+.successStatusLabel {
+	color: green;
+	font-weight: bold;
+}
+
+.leftCol {
+	text-align: left !important;
+}
+
+.rightCol {
+	text-align: right !important;
+}
+
+.conatiner {
+	clear: both;
+}
+
+.leftDiv {
+	float: left;
+}
+
+.filterDiv {
+	background-color: #F4F4F4;
+	height: 500px;
+	width: 20%;
+	margin-top: -11px;
+}
+
+.rightDiv {
+	float: right;
+	width: 80%
+}
+
+.monitorFilterTilte {
+	background-color: #d1cdcf;
+	text-align: center;
+	font-size: larger;
+	font-weight: bold;
+	margin: 5px;
+}
+
+.monitorLabel {
+	font-weight: bold;
+	padding-left: 13px;
+	background: url("../img/arrow_bullet.png") no-repeat left;
+}
+
+.filterlist {
+	margin: 10px;
+	margin-top: 2px;
+	overflow: auto;
+}
+
+.filterGo {
+	float: right;
+	margin: 15px;
+}
+
+.GoLink {
+	background-color: #D1CDCF;
+	border: 1px solid grey;
+	padding: 3px 10px;
+	text-decoration: none;
+}
+/*--------------------------End Mntor --------------------*/
+
+/*----------------JQuery CSS--------------------*/
+.ui-widget {
+	font-size: inherit;
+}
+
+.table .jqplot-table-legend {
+	left: 330px;
+}
+
+/*------------------ css for timepicker ---------------*/
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+	height: 25px;
+	margin-bottom: -25px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: 0 10px 10px 65px;
+}
+
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ui-timepicker-rtl {
+	direction: rtl;
+}
+
+.ui-timepicker-rtl dl {
+	text-align: right;
+}
+
+.ui-timepicker-rtl dl dd {
+	margin: 0 65px 10px 10px;
+}
+
+.label {
+	font-weight: bold;
+}
+
+/*------------------ css for timepicker End---------------*/
+
+/* removing NOW button from JQuery date picker */
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	float: left;
+	background: #900;
+	display: none;
+}
+/*----------------------- Phase two ---------------*/
+.overlayBG {
+	opacity: .5;
+	display: none;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	background-color: #000;
+}
+
+.overlaydiv {
+	opacity: 0;
+	display: none;
+	position: fixed;
+	top: 0px;
+	width: 100px;
+	height: 100px;
+	left: 50%;
+	background-repeat: repeat-x;
+}
+
+.overlayContainerOuter {
+	position: absolute;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+}
+
+.overlayContainerInner {
+	background: #fff;
+	display: block;
+	overflow: hidden;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.overlayContent {
+	position: fixed;
+	left: 450px !important;
+	top: 50px;
+	background: #fff;
+	color: #444;
+	display: block;
+	font-size: 12px;
+	padding: 20px;
+	border: #ccc solid 3px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+	width: 400px;
+}
+
+.overlayClose {
+	float: right;
+}
+
+.mmagd_2sms_campain_fulll_persentage_bar {
+	width: 50px;
+	border: 1px solid #ccc;
+	height: 20px;
+	background-color: #fff;
+	margin-top: -3px;
+	display: block !important;
+	margin-left: 20px;
+}
+
+.mmagd_2sms_campain_fulll_persentage_bar_green {
+	width: 10px;
+	background-color: #428600;
+	height: 20px;
+	display: block !important;
+}
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-draggable.ui-resizable
+	{
+	/*	width: auto !important;*/
+	
+}
+
+.mmagd_2sms_add_campain_sendto_close_icon {
+	background: url(../../resources/img/icon.png);
+	background-position: -810px -1050px;
+	width: 14px;
+	height: 13px;
+	border: 0px;
+	cursor: pointer;
+	float: right;
+	margin-top: 3px;
+}
+
+/* -------------------------------- intra Sender -------------------------------------*/
+.selection tr {
+	float: left;
+	width: 150px;
+	height: 20px;
+}
+
+.selection tbody {
+	width: 1090px;
+	height: 200px;
+	float: right;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

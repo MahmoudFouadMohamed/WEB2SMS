@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<f:view>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Reset Password</title>
+		<h:outputScript name="js/jquery-1.9.1.js" />
+		<h:outputStylesheet name="css/login_style.css" />
+		<script>
+			function setFocus() {
+				document.getElementById("usrInput").focus();
+			}
+		</script>
+	</h:head>
+
+	<h:body onload="setFocus()">
+		<h:form class="login_form">
+			<div id="bkground">
+				<div id="up">
+					<h:graphicImage name="img/logo_Voda.png" 
+						alt="Vodafone Egypt Logo"
+						style="width: 120px; height: 120px; vertical-align: middle"/>
+					<span class="loginTitle"> Web 2 SMS </span>
+				</div>
+
+				<div id="split"></div>
+
+				<div id="down">
+					<div id="access">
+						<div class="loginResultMessages">
+							<h:messages styleClass="errormessageslogin" />
+							<h:outputText value="#{systemLogin.loginResult}"
+								styleClass="errormessageslogin"></h:outputText>
+						</div>
+					</div>
+				</div>
+
+				<div class="resetFormBack"></div>
+				<div class="resetFormTitle">Reset Password</div>
+				<div class="resetFormBody">
+					<h:panelGroup styleClass="loginInputs">
+						<div class="loginInputs">
+							<div class="note" style="color: red; font-size: small; top: -5px">
+								Your Password has been expired, kindly reset it</div>
+							Old Password
+							<h:inputSecret required="true" maxlength="30" id="oldPsw"
+								label="Old Password" value="#{systemLogin.oldPasw}"
+								name="oldPsw"></h:inputSecret>
+
+							New Password
+							<h:inputSecret redisplay="true" required="true"
+								label="New Password" maxlength="30"
+								value="#{systemLogin.newPasw}"
+								id="newPsw"></h:inputSecret>
+
+							Confirm New Password
+							<h:inputSecret redisplay="true" required="true"
+								label="Confrim Password" maxlength="30"
+								value="#{systemLogin.confirmPsw}"
+								id="confPsw"></h:inputSecret>
+								
+								<br />
+								<br />
+								
+								<h:commandButton value="Reset" styleClass="btnSubmit"
+									action="#{systemLogin.resetPassword}">
+								</h:commandButton>
+								
+								<h:commandButton value="Cancel" styleClass="btnSubmit"
+									action="#{systemLogin.cancelReset}">
+									<f:ajax execute="@this" />
+								</h:commandButton>
+						</div>
+					</h:panelGroup>
+				</div>
+
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

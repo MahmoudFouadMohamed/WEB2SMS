@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+ <display-name>Web2SMS_Prov_EAR</display-name>
+ <module>
+   <ejb>Web2SMS-Prov_Utils.jar</ejb>
+ </module>
+ <module>
+   <web>
+     <web-uri>Web2SMS-Prov_Main.war</web-uri>
+     <context-root>web2sms/prov/</context-root>
+   </web>
+ </module>
+ <module>
+   <ejb>AppErrorManager.jar</ejb>
+ </module>
+<!--  <module>
+   <web>
+     <web-uri>Web2SMS_SMS-API.war</web-uri>
+     <context-root>web2sms/sms/</context-root>
+   </web>
+ </module>-->
+ <library-directory>lib</library-directory>
+ <env-entry>
+   <env-entry-name>java:app/env/basedir</env-entry-name>
+   <env-entry-type>java.lang.String</env-entry-type>
+   <env-entry-value>web2sms-prov/</env-entry-value>
+ </env-entry>
+ <env-entry>
+   <env-entry-name>java:app/env/baseconfigdir</env-entry-name>
+   <env-entry-type>java.lang.String</env-entry-type>
+   <env-entry-value>web2sms-prov/</env-entry-value>
+ </env-entry>
+</application>

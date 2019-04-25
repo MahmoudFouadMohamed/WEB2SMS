@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="Web2SMSTIBCOProvisioingService" targetNamespace="http://www.edafa.com/web2sms/prov/TIBCO" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.edafa.com/web2sms/prov/TIBCO" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.edafa.com/web2sms/prov/TIBCO" schemaLocation="Web2SMSTIBCOProvisioingService1.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.edafa.com/web2sms/prov/enums/" schemaLocation="Web2SMSTIBCOProvisioingService2.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.edafa.com/web2sms/service/model/enums/" schemaLocation="Web2SMSTIBCOProvisioingService3.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.edafa.com/web2sms/service/model/" schemaLocation="Web2SMSTIBCOProvisioingService4.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="downgradeService">
+    <part element="tns:downgradeServiceRequest" name="request"/>
+  </message>
+  <message name="downgradeServiceResponse">
+    <part element="tns:downgradeServiceResponse" name="provStatus"/>
+  </message>
+  <message name="upgradeService">
+    <part element="tns:upgradeServiceRequest" name="request"/>
+  </message>
+  <message name="upgradeServiceResponse">
+    <part element="tns:upgradeServiceResponse" name="provStatus"/>
+  </message>
+  <message name="changeSenderName">
+    <part element="tns:changeSenderNameRequest" name="request"/>
+  </message>
+  <message name="changeSenderNameResponse">
+    <part element="tns:changeSenderNameResponse" name="provStatus"/>
+  </message>
+  <message name="getAccountInfo">
+    <part element="tns:getAccountInfoRequest" name="request"/>
+  </message>
+  <message name="getAccountInfoResponse">
+    <part element="tns:getAccountInfoResponse" name="accountInfo"/>
+  </message>
+  <message name="confirmSenderNameChange">
+    <part element="tns:confirmSenderNameChangeRequest" name="request"/>
+  </message>
+  <message name="confirmSenderNameChangeResponse">
+    <part element="tns:confirmSenderNameChangeResponse" name="provStatus"/>
+  </message>
+  <message name="cancelProvRequest">
+    <part element="tns:cancelProvRequestRequest" name="request"/>
+  </message>
+  <message name="cancelProvRequestResponse">
+    <part element="tns:cancelProvRequestResponse" name="provStatus"/>
+  </message>
+  <message name="activateService">
+    <part element="tns:activateServiceRequest" name="request"/>
+  </message>
+  <message name="activateServiceResponse">
+    <part element="tns:activateServiceResponse" name="provStatus"/>
+  </message>
+  <message name="deactivateService">
+    <part element="tns:deactivateServiceRequest" name="request"/>
+  </message>
+  <message name="deactivateServiceResponse">
+    <part element="tns:deactivateServiceResponse" name="provStatus"/>
+  </message>
+  <portType name="Web2SMSTIBCOProvisioning">
+    <operation name="downgradeService">
+      <input message="tns:downgradeService" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/downgradeServiceRequest"/>
+      <output message="tns:downgradeServiceResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/downgradeServiceResponse"/>
+    </operation>
+    <operation name="upgradeService">
+      <input message="tns:upgradeService" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/upgradeServiceRequest"/>
+      <output message="tns:upgradeServiceResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/upgradeServiceResponse"/>
+    </operation>
+    <operation name="changeSenderName">
+      <input message="tns:changeSenderName" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/changeSenderNameRequest"/>
+      <output message="tns:changeSenderNameResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/changeSenderNameResponse"/>
+    </operation>
+    <operation name="getAccountInfo">
+      <input message="tns:getAccountInfo" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/getAccountInfoRequest"/>
+      <output message="tns:getAccountInfoResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/getAccountInfoResponse"/>
+    </operation>
+    <operation name="confirmSenderNameChange">
+      <input message="tns:confirmSenderNameChange" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/confirmSenderNameChangeRequest"/>
+      <output message="tns:confirmSenderNameChangeResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/confirmSenderNameChangeResponse"/>
+    </operation>
+    <operation name="cancelProvRequest">
+      <input message="tns:cancelProvRequest" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/cancelProvRequestRequest"/>
+      <output message="tns:cancelProvRequestResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/cancelProvRequestResponse"/>
+    </operation>
+    <operation name="activateService">
+      <input message="tns:activateService" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/activateServiceRequest"/>
+      <output message="tns:activateServiceResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/activateServiceResponse"/>
+    </operation>
+    <operation name="deactivateService">
+      <input message="tns:deactivateService" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/deactivateServiceRequest"/>
+      <output message="tns:deactivateServiceResponse" wsam:Action="http://www.edafa.com/web2sms/prov/TIBCO/Web2SMSTIBCOProvisioning/deactivateServiceResponse"/>
+    </operation>
+  </portType>
+  <binding name="Web2SMSTIBCOProvisioingImplPortBinding" type="tns:Web2SMSTIBCOProvisioning">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="downgradeService">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="upgradeService">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="changeSenderName">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getAccountInfo">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="confirmSenderNameChange">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="cancelProvRequest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="activateService">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="deactivateService">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="Web2SMSTIBCOProvisioingService">
+    <port binding="tns:Web2SMSTIBCOProvisioingImplPortBinding" name="Web2SMSTIBCOProvisioingImplPort">
+      <soap:address location="http://127.0.0.1:7101/Web2SMSTIBCOProvisioingImpl/Web2SMSTIBCOProvisioingService"/>
+    </port>
+  </service>
+</definitions>

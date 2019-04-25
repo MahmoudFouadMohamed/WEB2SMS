@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.edafa.web2sms.clients</groupId>
+	<artifactId>Web2sms_UI_Clients_Gen</artifactId>
+	<version>1</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>AccountManagementService</module>
+		<module>CampaignManagementService</module>
+		<module>ListManagementService</module>
+		<module>ReportManagementService</module>
+		<module>TemplateManagementService</module>
+		<module>ServiceProvisioning</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>com.oracle.webservices.user-api_12.1.2</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+<!-- 	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>AccountManagementService</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>CampaignManagementService</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>ListManagementService</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>ReportManagementService</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>TemplateManagementService</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.edafa.web2sms.clients</groupId>
+				<artifactId>ServiceProvisioning</artifactId>
+				<version>1</version>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement> -->
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>weblogic-maven-plugin</artifactId>
+				<version>12.1.2-0-0</version>
+				<executions>
+					<execution>
+						<id>clientgen</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>ws-clientgen</goal>
+						</goals>
+
+						<configuration>
+							<wsdl>http://localhost:7101/CampaignManagementServiceImpl/CampaignManagementService?wsdl</wsdl>
+							<destDir> ${project.build.outputDirectory}</destDir>
+							<!-- <copyWsdl>true</copyWsdl> -->
+							<jmstransportclient>
+								<jndiUrl>t3://127.0.0.1:7101</jndiUrl>
+
+							</jmstransportclient>
+						</configuration>
+					</execution>
+				</executions>
+				<!-- <configuration> <adminurl>t3://127.0.0.1:7101</adminurl> <user>weblogic</user> 
+					<password>welcome1</password> <srcWsdl>http://localhost:7101/CampaignManagementServiceImpl/CampaignManagementService?wsdl</srcWsdl> 
+					</configuration> -->
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

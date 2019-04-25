@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+	<title><ui:insert name="title"> Web 2 SMS </ui:insert></title>
+
+</h:head>
+
+<body>
+	<div id="all">
+		<div id="header">
+			<ui:insert name="header">
+
+				<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+				<ui:include src="/WEB-INF/Templates/AdministratorHeader.xhtml" />
+			</ui:insert>
+		</div>
+
+
+		<div id="container">
+			<h:form>
+				<div id="navigation">
+					<div id="navItems">
+						<div id="sysAdmin">System Administration</div>
+						<ul>
+
+							<li><h:commandLink styleClass="navMain" value="System Configuations" action="/Admin/Configs.xhtml?faces-redirect=true">
+								</h:commandLink></li>
+
+
+							<li><h:commandLink styleClass="navMain" value="Ready SMS template"
+									action="/Admin/SMSTemplates.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+
+							<li><h:commandLink styleClass="navMain" value="Campaigns"
+									action="/Admin/SearchCampaigns.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+
+							<li><h:commandLink styleClass="navMain" value="Accounts"
+									action="/Admin/CustomerAccounts?faces-redirect=true ">
+								</h:commandLink></li>
+
+							<li><h:commandLink styleClass="navMain" value="Tier Management"
+									action="/Admin/Tier.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+								
+								<li><h:commandLink styleClass="navMain" value="SMS API Service"
+									action="/Admin/SMSAPIService.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+								
+								<li><h:commandLink styleClass="navMain" value="Limiters"
+									action="/Admin/Limiters.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+								
+								
+						</ul>
+					</div>
+
+				</div>
+			</h:form>
+
+			<div class="pgContent">
+				<div id="content">
+					<ui:insert name="content">
+						<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+						<!-- <div> -->
+						<!-- <ui:include src="content.xhtml"/> -->
+						<!-- </div> -->
+					</ui:insert>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+				<ui:include src="/WEB-INF/Templates/AdministratorFooter.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+</body>
+</html>

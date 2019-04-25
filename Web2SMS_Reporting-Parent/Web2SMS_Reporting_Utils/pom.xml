@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>Web2SMS_Reporting_Utils</artifactId>
+	<packaging>ejb</packaging>
+
+	<name>Web2SMS_Reporting_Utils</name>
+
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Reporting-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Common_DALayer</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Web2SMS-Reporting_Utils</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resource</directory>
+			</resource>
+		</resources>
+	</build>
+
+</project>

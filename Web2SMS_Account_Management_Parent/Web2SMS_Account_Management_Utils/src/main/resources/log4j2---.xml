@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+    <Appenders>
+
+        <RollingRandomAccessFile name="ACCOUNT_MNGMT_appender"  fileName="web2sms-account-manag/logs/web2sms_acct.log"
+                                 filePattern="web2sms-account-manag/logs/web2sms_acct.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+
+        <RollingRandomAccessFile name="ACCOUNT_MNGMT_UTILS_appender"  fileName="web2sms-account-manag/logs/web2sms_app.log"
+                                 filePattern="web2sms-account-manag/logs/web2sms_app.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    ===================================================================================================
+
+    <Loggers>
+        <Root level="trace">
+        </Root>
+        
+        <AsyncLogger name="ACCOUNT_MNGMT" level="INFO">
+            <AppenderRef ref="ACCOUNT_MNGMT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="ACCOUNT_MNGMT_UTILS" level="INFO">
+            <AppenderRef ref="ACCOUNT_MNGMT_UTILS_appender"/>
+        </AsyncLogger>
+   
+    </Loggers>
+</Configuration>

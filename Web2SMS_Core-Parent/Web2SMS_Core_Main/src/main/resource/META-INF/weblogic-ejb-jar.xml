@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wls:weblogic-ejb-jar
+	xmlns:wls="http://xmlns.oracle.com/weblogic/weblogic-ejb-jar"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd http://xmlns.oracle.com/weblogic/weblogic-ejb-jar http://xmlns.oracle.com/weblogic/weblogic-ejb-jar/1.4/weblogic-ejb-jar.xsd">
+	<!--weblogic-version:12.1.2 -->
+	<wls:weblogic-enterprise-bean>
+		<wls:ejb-name>AggCDRTask</wls:ejb-name>
+		<wls:stateful-session-descriptor>
+			<wls:stateful-session-cache>
+				<wls:idle-timeout-seconds>60</wls:idle-timeout-seconds>
+				<wls:cache-type>NRU</wls:cache-type>				
+			</wls:stateful-session-cache>
+		</wls:stateful-session-descriptor>
+	</wls:weblogic-enterprise-bean>
+	<wls:weblogic-enterprise-bean>
+		<wls:ejb-name>DetailedCDRTask</wls:ejb-name>
+		<wls:stateful-session-descriptor>
+			<wls:stateful-session-cache>
+				<wls:idle-timeout-seconds>60</wls:idle-timeout-seconds>
+				<wls:cache-type>NRU</wls:cache-type>				
+			</wls:stateful-session-cache>
+		</wls:stateful-session-descriptor>
+	</wls:weblogic-enterprise-bean>
+    <wls:weblogic-enterprise-bean>
+        <wls:ejb-name>SubmitSMSBean</wls:ejb-name>
+        <wls:stateless-session-descriptor></wls:stateless-session-descriptor>
+        <wls:jndi-name>SubmitSMS</wls:jndi-name>
+        <wls:local-jndi-name>SubmitSMSBean</wls:local-jndi-name>
+    </wls:weblogic-enterprise-bean>
+</wls:weblogic-ejb-jar>

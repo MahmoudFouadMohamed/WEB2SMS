@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xsd:schema targetNamespace="http://www.edafa.com/web2sms/service/model/enums/" xmlns:ns0="http://www.edafa.com/web2sms/service/model/enums/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="AccountStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="ACTIVE"/>
+      <xsd:enumeration value="SUSPENDED"/>
+      <xsd:enumeration value="INACTIVE"/>
+      <xsd:enumeration value="UNKNOWN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

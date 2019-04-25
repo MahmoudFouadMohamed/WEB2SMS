@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Web2SMS_SMS-API_Main</artifactId>
+	<packaging>war</packaging>
+
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2SMS_SMS-API-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.edafa.web2sms</groupId>
+			<artifactId>Web2SMS_SMS-API_Utils</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.web2sms</groupId>
+			<artifactId>Web2SMS_SMS-API_Caching</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.web2sms</groupId>
+			<artifactId>Web2SMS_SMS-API-Model_Interfaces</artifactId>
+			<version>2.8</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.toplink</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>12.1.2-0-0</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+	 <dependency>
+	  <groupId>com.edafa.utils</groupId>
+	  <artifactId>jcommons</artifactId>
+	  <version>1.0.5</version>
+	  <type>jar</type>
+	 </dependency>
+	 <dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+	  <type>jar</type>
+	 </dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-client-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-multipart-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-core-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			 <groupId>com.edafa.utils</groupId>
+			 <artifactId>load-balancer</artifactId>
+			 <version>1.1.0</version>
+                         <scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Web2SMS_SMS-API_Main</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

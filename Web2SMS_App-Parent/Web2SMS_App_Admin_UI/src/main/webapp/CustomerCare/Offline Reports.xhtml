@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/Templates/CustomerCareTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Offline Reports</div>
+			<div class="pgContainer">
+
+				<h:messages errorClass="errormessages" infoClass="succeededMessage" />
+				<div>
+					<h:form id="formStyle">
+						<div class="dataTablePaging">
+							<h:commandLink action="#{offlineReports.FirstPage}">
+								<img alt="First"
+									src="${facesContext.externalContext.requestContextPath}/img/First#{(offlineReports.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{offlineReports.previousPage}">
+								<img alt="Previous"
+									src="${facesContext.externalContext.requestContextPath}/img/Previous#{(offlineReports.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+
+							<h:outputText
+								value="#{general.getCeil((offlineReports.currentPage)/offlineReports.pageSize,offlineReports.rowCount/offlineReports.pageSize)}"></h:outputText>
+							of
+							<h:outputText
+								value="#{general.getCeil( offlineReports.rowCount/offlineReports.pageSize )}"></h:outputText>
+
+							<h:commandLink action="#{offlineReports.nextPage}">
+								<img alt="Next"
+									src="${facesContext.externalContext.requestContextPath}/img/Next#{(offlineReports.currentPage+offlineReports.pageSize >=offlineReports.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{offlineReports.LastPage}">
+								<img alt="Last"
+									src="${facesContext.externalContext.requestContextPath}/img/Last#{(offlineReports.currentPage+offlineReports.pageSize >=offlineReports.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+
+						</div>
+						<div>
+							<h:dataTable var="iofflineReports"
+								value="#{offlineReports.reports}" styleClass="datatablecss"
+								cellspacing="0" cellpadding="0">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Report Id"></h:outputText>
+									</f:facet>
+									<h:outputText id="offlineReportsId"
+										value="#{iofflineReports.id}"></h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Request Date"></h:outputText>
+									</f:facet>
+									<h:outputText id="offlineReportsName"
+										value="#{iofflineReports.requestDate}"></h:outputText>
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Campaign Name"></h:outputText>
+									</f:facet>
+									<h:outputText id="offlineReportsCreationDate"
+										value="#{iofflineReports.campaignName}" />
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Report Status"></h:outputText>
+									</f:facet>
+									<h:outputText id="status" value="#{iofflineReports.status}" />
+								</h:column>
+
+								<h:column>
+									<script>
+										function openTab(data) {
+											if (data.status == "success") {
+												window
+														.open('#{request.contextPath}/DownloadReport');
+											}// end if
+										}// end of function displayProgress
+									</script>
+									<f:facet name="header">
+										<h:outputText value="Action"></h:outputText>
+									</f:facet>
+
+									<h:panelGroup>
+										<h:panelGroup
+											rendered="#{iofflineReports.status == 'PENDING'}">
+											<h:commandLink value="#{msg.cancel}"
+												action="#{offlineReports.cancelReport(iofflineReports.id)}">
+
+											</h:commandLink>
+										</h:panelGroup>
+										<h:panelGroup
+											rendered="#{iofflineReports.status == 'SUCCESS'}">
+											<h:commandLink
+												action="#{offlineReports.readFileFromServer(iofflineReports.fileName)}"
+												value="#{msg.download}">
+												<f:ajax execute="@this" onevent="openTab" />
+											</h:commandLink>
+										</h:panelGroup>
+									</h:panelGroup>
+
+								</h:column>
+
+							</h:dataTable>
+						</div>
+						<br />
+
+					</h:form>
+
+					<br />
+				</div>
+
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

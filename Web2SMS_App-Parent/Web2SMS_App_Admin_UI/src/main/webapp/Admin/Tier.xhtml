@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition
+	template="/WEB-INF/Templates/AdministratorTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Tier Management</div>
+			<div class="pgContainer">
+
+				<h:panelGroup id="NotificationMessagesContainer">
+					<h:messages errorClass="errormessages" infoClass="succeededMessage" />
+					<script>
+						$(".errormessages").corner();
+						$(".succeededMessage").corner();
+					</script>
+				</h:panelGroup>
+
+				<div class="PanelBody" id="panelBody">
+					<div class="PnlContainer">
+						<div class="PanelHdr">#{(tierBean.editFlag)? msg.update :
+							msg.add} Tier</div>
+						<div class="PanelBody">
+							<table>
+								<tr>
+									<td>
+										<div class="editAddDiv">
+											<br />
+											<h:form>
+												<h:panelGrid columns="2" id="inputform">
+													<f:facet name="footer">
+														<h:commandButton type="reset" value="#{msg.reset}"></h:commandButton>
+														<h:commandButton action="#{tierBean.add}"
+															onclick="if(#{tierBean.editFlag})return confirm('#{msg.areYouSureUpdate} (#{tierBean.tier.tierName}) ?');"
+															value="#{(tierBean.editFlag)? msg.update : msg.add} "></h:commandButton>
+														<h:commandButton type="button" value="#{msg.cancel}"
+															rendered="#{tierBean.editFlag}"
+															onclick="window.location.replace(window.location.href);"></h:commandButton>
+													</f:facet>
+
+													<h:outputText value="ID"></h:outputText>
+													<h:inputText id="tierId" label="ID" required="true"
+														disabled="#{tierBean.editFlag}"
+														value="#{tierBean.tier.tierId}"></h:inputText>
+
+													<h:outputText value="Name"></h:outputText>
+													<h:inputText id="tierName" label="Name" required="true"
+														value="#{tierBean.tier.tierName}"></h:inputText>
+
+													<h:outputText value="Quota"></h:outputText>
+													<h:inputText id="tierquota" label="Quota" required="true"
+														value="#{tierBean.tier.quota}"></h:inputText>
+
+													<h:outputText value="Rate Plan"></h:outputText>
+													<h:inputText id="tierratePlan" label="Rate Plan"
+														required="true" value="#{tierBean.tier.ratePlan}"></h:inputText>
+
+													<h:outputText value="Tier Type"></h:outputText>
+													<h:selectOneMenu id="tierType"
+														value="#{tierBean.tierTypeName}"
+														disabled="#{tierBean.editFlag}">
+														<f:selectItems value="#{tierBean.tierTypesList}" var="c"
+															itemLabel="#{c}" itemValue="#{c}" />
+														<f:ajax execute="@this"
+															listener="#{tierBean.changeTierType}"
+															render="expairyDatesOutput expairyDatesInput"/>
+													</h:selectOneMenu>
+													<h:panelGroup id= "expairyDatesOutput">
+														<h:outputText value="ExpiaryDays"
+															rendered="#{tierBean.expiryDays}"></h:outputText>
+													</h:panelGroup>
+
+
+													<h:panelGroup id="expairyDatesInput">
+
+														<h:inputText id="inputExpiaryDayes" label="ExpiaryDays"
+															value="#{tierBean.tier.expairyDays}"
+															rendered="#{tierBean.expiryDays}" />
+													</h:panelGroup>
+
+
+
+
+													<h:outputText value="Description"></h:outputText>
+													<h:inputTextarea id="tierTxt" label="Description"
+														value="#{tierBean.tier.description}"></h:inputTextarea>
+
+												</h:panelGrid>
+
+											</h:form>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<br />
+				<div>
+					<h:form id="formStyle">
+						<div class="dataTablePaging">
+							<h:commandLink action="#{tierBean.FirstPage}">
+								<img alt="First"
+									src="${facesContext.externalContext.requestContextPath}/img/First#{(tierBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{tierBean.previousPage}">
+								<img alt="Previous"
+									src="${facesContext.externalContext.requestContextPath}/img/Previous#{(tierBean.currentPage==0)?'grey':''}.png" />
+							</h:commandLink>
+
+							<h:outputText
+								value="#{general.getCeil((tierBean.currentPage)/tierBean.pageSize,tierBean.rowCount/tierBean.pageSize)}"></h:outputText>
+							of
+							<h:outputText
+								value="#{general.getCeil( tierBean.rowCount/tierBean.pageSize )}"></h:outputText>
+
+							<h:commandLink action="#{tierBean.nextPage}">
+								<img alt="Next"
+									src="${facesContext.externalContext.requestContextPath}/img/Next#{(tierBean.currentPage+tierBean.pageSize >=tierBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+							<h:commandLink action="#{tierBean.LastPage}">
+								<img alt="Last"
+									src="${facesContext.externalContext.requestContextPath}/img/Last#{(tierBean.currentPage+tierBean.pageSize >=tierBean.rowCount)?'grey':''}.png" />
+							</h:commandLink>
+
+						</div>
+						<div>
+							<h:dataTable var="itierBean" value="#{tierBean.tiers}"
+								styleClass="datatablecss" cellspacing="0" cellpadding="0">
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="ID"></h:outputText>
+									</f:facet>
+									<h:outputText id="tierBeanId" value="#{itierBean.tierId}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Name"></h:outputText>
+									</f:facet>
+									<h:outputText id="tierBeanName" value="#{itierBean.tierName}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Quota"></h:outputText>
+									</f:facet>
+									<h:outputText id="tierBeanquota" value="#{itierBean.quota}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Rate Plan"></h:outputText>
+									</f:facet>
+									<h:outputText id="tierBeanratePlan"
+										value="#{itierBean.ratePlan}"></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Description"></h:outputText>
+									</f:facet>
+									<h:outputText id="tierBeanDay" value="#{itierBean.description}">
+
+									</h:outputText>
+								</h:column>
+
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="Tier Type"></h:outputText>
+									</f:facet>
+									<h:outputText value="#{itierBean.tierType.tierTypeName}">
+
+									</h:outputText>
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="#{msg.delete}"></h:outputText>
+									</f:facet>
+									<h:commandLink value="Delete"
+										onclick="return confirm('#{msg.areYouSureDelete} (#{itierBean.tierName}) ?');"
+										action="#{tierBean.delete(itierBean.tierId)}">
+										<f:ajax render="@form :NotificationMessagesContainer" />
+									</h:commandLink>
+								</h:column>
+								<h:column>
+									<f:facet name="header">
+										<h:outputText value="#{msg.update}"></h:outputText>
+									</f:facet>
+									<h:commandLink value="#{msg.update}" class="editLink"
+										action="#{tierBean.edit(itierBean.tierId)}">
+
+
+									</h:commandLink>
+								</h:column>
+							</h:dataTable>
+						</div>
+					</h:form>
+
+					<br />
+				</div>
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

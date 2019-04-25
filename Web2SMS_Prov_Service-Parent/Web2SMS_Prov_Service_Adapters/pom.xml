@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Web2SMS_Prov_Service_Adapters</artifactId>
+	<packaging>ejb</packaging>
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Prov_Service-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Prov_Service_Utils</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Web2SMS-Prov_Service_Adapters</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resource</directory>
+			</resource>
+		</resources>
+	</build>
+    <name>Web2SMS_Prov_Service_Adapters</name>
+</project>

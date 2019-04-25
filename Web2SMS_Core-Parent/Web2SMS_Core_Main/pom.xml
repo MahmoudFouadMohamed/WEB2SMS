@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>Web2SMS_Core_Main</artifactId>
+	<packaging>ejb</packaging>
+
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Core-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>Web2SMS_Common_DALayer</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>Web2SMS_Core_Utils</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.web2sms</groupId>
+			<artifactId>Web2SMS_SMS-API-Model_Interfaces</artifactId>
+			<version>2.8</version>
+			 <exclusions>
+				<exclusion>
+					<groupId>com.edafa.web2sms</groupId>
+					<artifactId>EncyrptionUtil</artifactId>
+				</exclusion>
+			 </exclusions>
+			 
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.jee</groupId>
+                        <artifactId>app-error-manager</artifactId>
+                        <version>0.2.2</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.utils</groupId>
+			<artifactId>jcommons</artifactId>
+			<version>1.0.5</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}.lib</groupId>
+			<artifactId>commons</artifactId>
+			<version>0.0.3</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.smsgw</groupId>
+			<artifactId>smsgw_dalayer</artifactId>
+			<version>2.5.6</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.smsgw</groupId>
+			<artifactId>smsgw_smshandler</artifactId>
+			<version>2.5.6</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.smsgw</groupId>
+			<artifactId>smsgw_utils</artifactId>
+			<version>2.5.6</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Web2SMS-Core_Main</finalName>
+	</build>
+
+</project>

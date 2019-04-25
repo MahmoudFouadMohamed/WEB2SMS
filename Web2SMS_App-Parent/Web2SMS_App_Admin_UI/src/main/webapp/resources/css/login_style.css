@@ -1,0 +1,215 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	background-color: #EAEAEA;
+	margin: 0;
+}
+
+#bkground {
+	background-color: #EAEAEA;
+	margin: 40px;
+	padding: 0px;
+	position: relative;
+	height: 600px;
+	border-radius: 20px;
+	min-width: 800px;
+}
+
+#up {
+	height: 50%;
+	background-color: #808080;
+	margin: 0;
+	padding: 0px;
+	position: relative;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+
+#up .loginTitle {
+	font-size: 40px;
+	color: white;
+}
+
+#split {
+	height: 10px;
+	background-color: #EAEAEA;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#down {
+	height: 50%;
+	background-color: #C0C0C0;
+	margin: 0;
+	padding: 0px;
+	position: relative;
+	border-radius: 0 0 20px 20px;
+}
+
+#loginFormBack {
+	height: 200px;
+	width: 360px;
+	background-color: #EAEAEA;
+	position: absolute;
+	margin-top: -400px;
+	right: 100px;
+	padding: 30px;
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 10px;
+	border-color: #EAEAEA;
+}
+
+#loginFormTitle {
+	height: 20px;
+	width: 380px;
+	background-color: red;
+	position: absolute;
+	margin-top: -390px;
+	right: 110px;
+	padding: 20px;
+	border-radius: 20px 20px 0 0;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+	color: white;
+	font-size: 24px;
+}
+
+#loginFormBody {
+	height: 140px;
+	width: 360px;
+	background-color: white;
+	position: absolute;
+	margin-top: -330px;
+	right: 110px;
+	padding: 30px;
+	border-radius: 0 0 20px 20px;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+}
+
+#access {
+	position: absolute;
+	bottom: 150px;
+	padding: 20px;
+	color: red;
+	margin: 0;
+}
+
+
+/***************************   Controls  ************************************/
+.loginInputs {
+	color: #808080;
+	margin-top: -15px;
+	font-weight: bold;
+}
+
+.login_form input[type=username],.login_form input[type=text],.login_form input[type=password] {
+	position: relative;
+	font-size: 14px;
+	width: 310px;
+	border-radius: 3px;
+	padding: 7px;
+	border: 1px solid #C0C0C0;
+	/* border: none; */
+	/* 	box-shadow: inset 0 0 5px rgba(0, 0, 0.1, 0.1), inset 0 3px 2px
+		rgba(0, 0, 0, 0.1); */
+	margin: 0px;
+	padding-right: 50px;
+}
+
+.login_form input[type=text]:focus,.login_form input[type=password]:focus {
+	position: relative;
+	font-size: 14px;
+	width: 310px;
+	border-radius: 3px;
+	padding: 7px;
+	border: 2px solid #C0C0C0;
+	/* border: none; */
+	/* 	box-shadow: inset 0 0 5px rgba(0, 0, 0.1, 0.1), inset 0 3px 2px
+		rgba(0, 0, 0, 0.1); */
+	margin: 0px;
+	padding-right: 50px;
+}
+
+.login_form input[type=submit] {
+	width: 100px;
+	height: 30px;
+	position: relative;
+	right: -230px;
+	color: red;
+}
+/Web2SMS-App_Admin_UI/WebContent/resources/css/smoothness/images
+.passwordInput {
+	margin-top: -10px;
+}
+
+.loginPanel {
+	background: black;
+}
+
+.loginPanel tr {
+	border: 1px dotted black;
+}
+
+.loginPanel td {
+	border: 1px dotted black;
+}
+
+/*****************************   Reset Password        ******************************/
+#ResetBG {
+	background-color: rgb(192, 192, 192);
+	position: relative;
+	border-radius: 20px 20px 20px 20px;
+	min-width: 800px;
+	height: 550px;
+	margin: 40px;
+}
+
+.resetFormBack {
+    height: 237px;
+    width: 360px;
+    background-color: rgb(234, 234, 234);
+    position: absolute;
+    margin-top: -400px;
+    right: 100px;
+    padding: 30px;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgb(234, 234, 234);
+}
+.resetFormTitle {
+    height: 20px;
+    width: 380px;
+    background-color: red;
+    position: absolute;
+    margin-top: -390px;
+    right: 110px;
+    padding: 20px;
+    border-radius: 20px 20px 0px 0px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 24px;
+}
+.resetFormBody {
+    height: 175px;
+    width: 360px;
+    background-color: white;
+    position: absolute;
+    margin-top: -330px;
+    right: 110px;
+    padding: 30px;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.resetFormBody .btnSubmit {
+	width: 100px;
+	height: 30px;
+	position: relative;
+	right: -130px !important;
+	color: red;
+}

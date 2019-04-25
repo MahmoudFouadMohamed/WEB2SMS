@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+    <Appenders>
+        <RollingRandomAccessFile name="APP_UTILS_appender"  fileName="web2sms-app/logs/web2sms_app.log"
+                                 filePattern="web2sms-app/logs/web2sms_app.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="CAMP_MNGMT_appender"  fileName="web2sms-app/logs/web2sms_camp.log"
+                                 filePattern="web2sms-app/logs/web2sms_camp.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="LIST_MNGMT_appender"  fileName="web2sms-app/logs/web2sms_list.log"
+                                 filePattern="web2sms-app/logs/web2sms_list.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="TEMPLATE_MNGMT_appender"  fileName="web2sms-app/logs/web2sms_template.log"
+                                 filePattern="web2sms-app/logs/web2sms_template.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="ADMIN_UI_appender"  fileName="web2sms-app/logs/web2sms_admin_ui.log"
+                                 filePattern="web2sms-app/logs/web2sms_admin_ui.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="ADMIN_MNGMT_appender"  fileName="web2sms-app/logs/web2sms_admin.log"
+                                 filePattern="web2sms-app/logs/web2sms_admin.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="SMS_API_MNGT_appender"  fileName="web2sms-app/logs/web2sms_smsapi.log"
+                                 filePattern="web2sms-app/logs/web2sms_smsapi.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="QUOTA_MNGMT_appender"  fileName="web2sms-app/logs/web2sms_quota.log"
+                                 filePattern="web2sms-app/logs/web2sms_quota.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+         ===================================================================================================
+        <RollingRandomAccessFile name="SMS_API_CACHING_appender"  fileName="web2sms-app/logs/web2sms_smsapi_caching.log"
+                                 filePattern="web2sms-app/logs/web2sms_smsapi_caching.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+        ===================================================================================================
+
+    <Loggers>
+        <Root level="trace">
+        </Root>
+        ===================================================================================================
+        <AsyncLogger name="APP_UTILS" level="INFO">
+            <AppenderRef ref="APP_UTILS_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="CAMP_MNGMT" level="INFO">
+            <AppenderRef ref="CAMP_MNGMT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="LIST_MNGMT" level="INFO">
+            <AppenderRef ref="LIST_MNGMT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="TEMPLATE_MNGMT" level="INFO">
+            <AppenderRef ref="TEMPLATE_MNGMT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="ADMIN_UI" level="INFO">
+            <AppenderRef ref="ADMIN_UI_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="ADMIN_MNGMT" level="INFO">
+            <AppenderRef ref="ADMIN_MNGMT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="SMS_API_MNGT" level="INFO">
+            <AppenderRef ref="SMS_API_MNGT_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="QUOTA_MNGMT" level="INFO">
+            <AppenderRef ref="QUOTA_MNGMT_appender"/>
+        </AsyncLogger>
+     	===================================================================================================
+        <AsyncLogger name="SMS_API_CACHING" level="INFO">
+            <AppenderRef ref="SMS_API_CACHING_appender"/>
+        </AsyncLogger>
+   </Loggers>
+</Configuration>

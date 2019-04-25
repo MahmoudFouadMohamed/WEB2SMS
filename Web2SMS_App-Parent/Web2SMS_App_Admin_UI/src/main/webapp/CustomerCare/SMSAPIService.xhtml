@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/Templates/CustomerCareTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">SMS API Service</div>
+			<div class="pgContainer">
+
+				<h:form id="SearchForm">
+					<h:panelGroup id="NotificationMessagesContainerPanelGroup">
+						<h:messages errorClass="errormessages" infoClass="succeededMessage" />
+						<script type="text/javascript">
+							$(".errormessages").corner();
+							$(".succeededMessage").corner();
+						</script>
+					</h:panelGroup>
+				
+					<div class="reversePnl">
+						<div class="reversePnlTitl">
+							<span class="spanTitle">Filter</span>
+						</div>
+						<div class="reversePnlBdy">
+							<table>
+								<tr>
+									<td>Account ID</td>
+									<td><h:inputText value="#{sMSAPIBean.accountID}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+									<td>Billing MSISDN</td>
+									<td><h:inputText value="#{sMSAPIBean.billingMSISDN}">
+											<f:validator validatorId="ValidatorCustCode" />
+										</h:inputText></td>
+									<td>Company Name</td>
+									<td><h:inputText value="#{sMSAPIBean.companyName}">
+										</h:inputText></td>
+								</tr>
+							</table>
+
+							<h:commandButton value="Filter" action="#{sMSAPIBean.filter}" />
+						</div>
+					</div>
+				</h:form>
+
+				<div class="PanelBody">
+					<br />
+					<div>
+						<h:form id="formStyle">
+								<div class="dataTablePaging">
+									<h:panelGroup id="AccountsPaginationContainerPanelGroup">
+										<h:commandLink action="#{sMSAPIBean.FirstPage}">
+											<img alt="First"
+												src="${facesContext.externalContext.requestContextPath}/img/First#{(sMSAPIBean.currentPage==0)?'grey':''}.png" />
+										</h:commandLink>
+										<h:commandLink action="#{sMSAPIBean.previousPage}">
+											<img alt="Previous"
+												src="${facesContext.externalContext.requestContextPath}/img/Previous#{(sMSAPIBean.currentPage==0)?'grey':''}.png" />
+										</h:commandLink>
+		
+										<h:outputText
+											value="#{general.getCeil((sMSAPIBean.currentPage)/sMSAPIBean.pageSize,sMSAPIBean.rowCount/sMSAPIBean.pageSize)}"></h:outputText>
+										of
+										<h:outputText
+											value="#{general.getCeil( sMSAPIBean.rowCount/sMSAPIBean.pageSize )}"></h:outputText>
+		
+										<h:commandLink action="#{sMSAPIBean.nextPage}">
+											<img alt="Next"
+												src="${facesContext.externalContext.requestContextPath}/img/Next#{(sMSAPIBean.currentPage+sMSAPIBean.pageSize >=sMSAPIBean.rowCount)?'grey':''}.png" />
+										</h:commandLink>
+										<h:commandLink action="#{sMSAPIBean.LastPage}">
+											<img alt="Last"
+												src="${facesContext.externalContext.requestContextPath}/img/Last#{(sMSAPIBean.currentPage+sMSAPIBean.pageSize >=sMSAPIBean.rowCount)?'grey':''}.png" />
+										</h:commandLink>
+									</h:panelGroup>
+								</div>
+								<div>
+									<h:panelGroup id="AccountsContainerPanelGroup">
+										<h:dataTable var="isMSAPIBean"
+											columnClasses="Col,Col,widthCol,Col,Col,Col"
+											value="#{sMSAPIBean.accounts}" styleClass="datatablecss"
+											cellspacing="0" cellpadding="0">
+											<h:column>
+												<f:facet name="header">
+													<h:outputText value="Account ID"></h:outputText>
+												</f:facet>
+												<h:outputText id="sMSAPIBeanId"
+													value="#{isMSAPIBean.accountId}"></h:outputText>
+											</h:column>
+											
+											<h:column>
+												<f:facet name="header">
+													<h:outputText value="Company Name"></h:outputText>
+												</f:facet>
+												<h:outputText id="sMSAPIBeanDesc"
+													value="#{isMSAPIBean.companyName}">
+		
+												</h:outputText>
+											</h:column>
+											
+											<h:column>
+												<f:facet name="header">
+													<h:outputText value="Billing MSISDN"></h:outputText>
+												</f:facet>
+												<h:outputText id="sMSAPIBeanTxt"
+													value="#{isMSAPIBean.billingMsisdn}">
+		
+												</h:outputText>
+											</h:column>
+		
+											<h:column>
+												<f:facet name="header">
+													<h:outputText value="SMS API"></h:outputText>
+												</f:facet>
+												<h:graphicImage library="img" name="no.png"
+													rendered="#{isMSAPIBean.accountSmsApi == null}" />
+												<h:graphicImage library="img" name="ok.png"
+													rendered="#{isMSAPIBean.accountSmsApi != null}"
+													style="width:16px;" />
+											</h:column>
+											
+											<h:column>
+												<h:panelGroup>
+													<h:commandButton action="#{sMSAPIBean.disableSMS}"
+														value="Disable"
+														onclick="return confirm('Are you sure, you want to disable SMS API ?');"
+														rendered="#{isMSAPIBean.accountSmsApi != null}">
+														 <f:ajax execute="@this" render=":formStyle:pnlUpdate :formStyle:AccountsContainerPanelGroup :formStyle:AccountsPaginationContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup :formStyle:pnlview"/>
+														<f:setPropertyActionListener
+															target="#{sMSAPIBean.smsApiAccount}" value="#{isMSAPIBean}" />
+													</h:commandButton>
+	
+													<h:commandButton action="#{sMSAPIBean.enableSMS}"
+														value="Enable"
+														rendered="#{isMSAPIBean.accountSmsApi == null}">
+														<f:ajax execute="@this" render=":formStyle:pnlUpdate :formStyle:pnlview"/>
+														<f:setPropertyActionListener
+															target="#{sMSAPIBean.smsApiAccount}" value="#{isMSAPIBean}" />
+													</h:commandButton>
+												</h:panelGroup>
+											</h:column>
+		
+											<h:column>
+												<h:commandLink value="Details"
+													action="#{sMSAPIBean.viewDetails}" class="viewDetails"
+													rendered="#{isMSAPIBean.accountSmsApi != null}">
+													<f:ajax execute="@this" render=":formStyle:pnlUpdate :formStyle:pnlview"/>
+													<f:setPropertyActionListener 
+														target="#{sMSAPIBean.smsApiAccount}" value="#{isMSAPIBean}" />
+												</h:commandLink>
+											</h:column>
+										</h:dataTable>
+									</h:panelGroup>
+								</div>
+
+							<br/>
+
+							<div id="addIPView">
+								<h:panelGroup id="pnlUpdate">
+									<h:panelGroup rendered="#{sMSAPIBean.addSMSAPIFlag}">
+										<div class="PnlContainer">
+											<div class="PanelHdr">Configure SMS API Service</div>
+											<div class="PanelBody"
+												style="margin: 0px 3px 3px; max-height: 320px;">
+												<table>
+													<tr>
+														<td>
+															<span>Account ID</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.accountId}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td>
+															<span>Company Name</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.companyName}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td>
+															<span>Billing MSISDN</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.billingMsisdn}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td><h:outputText value="Password" /></td>
+														<td><h:inputText value="#{sMSAPIBean.password}"
+																id="SmsApiPasswordInputText"
+																required="true" requiredMessage="Password is required" /></td>
+													</tr>
+													
+													<tr>
+														<td>
+															<h:outputText value="IP"
+																style="font-weight: normal;" />
+														</td>
+														
+														<td>
+															<h:inputText value="#{sMSAPIBean.ip}"
+																id="IPInputText"
+																validatorMessage="IP address does not valid">
+																<f:validator validatorId="IpValidator" />
+															</h:inputText>
+														</td>
+														
+														<td>
+															<h:commandLink action="#{sMSAPIBean.addNewIP}">
+																<f:ajax render=":formStyle:IPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup :formStyle:IPInputText" 
+																	execute=":formStyle:IPInputText" />
+																<h:graphicImage library="img" name="add_icon.png" />
+															</h:commandLink>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<span>IP List</span>
+														</td>
+														
+														<td>
+															<h:panelGroup id="IPsTableContainerPanelGroup">
+																<h:dataTable var="ipBean" value="#{sMSAPIBean.ipList}">
+																	<h:column>
+																		<h:outputText value="IP" style="top:-43px;left:-213px;" />
+																		<h:outputText value="#{ipBean}"
+																			style="left:48px;position:relative"
+																			validatorMessage="IP address does not valid" />
+																	</h:column>
+																	
+																	<h:column>
+																		<h:commandLink action="#{sMSAPIBean.removeIP}"
+																			style="position:relative;left:135px;top:4px;width:29px;"
+																			onclick="return confirm('Are you sure, you want to remove IP address ?');">
+																			<f:setPropertyActionListener
+																				target="#{sMSAPIBean.removedIP}" value="#{ipBean}" />
+																			<f:ajax execute="@this" render=":formStyle:IPsTableContainerPanelGroup" />
+																			<h:graphicImage library="img" name="remove_icon.png" />
+																		</h:commandLink>
+																	</h:column>
+																</h:dataTable>
+															</h:panelGroup>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<br/>
+															<h:commandButton value="Activate SMS API"
+																action="#{sMSAPIBean.activateSmsAPIService}">
+																<f:ajax execute=":formStyle:SmsApiPasswordInputText"
+																	render=":formStyle:pnlUpdate :formStyle:AccountsContainerPanelGroup :formStyle:AccountsPaginationContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup"/>
+															</h:commandButton>
+														</td>
+														
+														<td>
+															<br/>
+															<h:commandButton value="Cancel"
+																action="#{sMSAPIBean.cancelActivateSmsAPIService}">
+																<f:ajax execute="@this" 
+																	render=":formStyle:pnlUpdate" />
+															</h:commandButton>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+							</div>
+
+							<div id="detailsView">
+								<h:panelGroup id="pnlview">
+									<h:panelGroup rendered="#{sMSAPIBean.viewDetailsFlag}">
+										<div class="PnlContainer">
+											<div class="PanelHdr">SMS API Service</div>
+											<div class="PanelBody"
+												style="margin: 0px 3px 3px; max-height: 320px;">
+												<table>
+													<tr>
+														<td>
+															<span>Account ID</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.accountId}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td>
+															<span>Company Name</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.companyName}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td>
+															<span>Billing MSISDN</span>
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.smsApiAccount.billingMsisdn}" />
+														</td>
+													</tr>
+												
+													<tr>
+														<td>
+															<h:outputText value="Password" />
+														</td>
+														
+														<td>
+															<h:panelGroup id="UpdateSmsApiPasswordContainer">
+																<h:inputSecret value="#{sMSAPIBean.smsApiAccount.accountSmsApi.password}"
+																	id="UpdateSmsApiPasswordInputSecret"
+																	required="true" requiredMessage="Password is required" 
+																	redisplay="true"
+																	disabled="true"
+																	rendered="#{!sMSAPIBean.resetPasswordFlag}"/>
+																	
+																<h:inputText id="UpdateSmsApiPasswordInputText" 
+																	value="#{sMSAPIBean.password}"
+																	rendered="#{sMSAPIBean.resetPasswordFlag}"
+																	required="true"
+																	requiredMessage="Password is required"/>
+															</h:panelGroup>
+															
+														</td>
+														
+														<td>
+															<h:panelGroup id="UpdateResetPassowrdActions">
+																<h:commandLink
+																	rendered="#{!sMSAPIBean.resetPasswordFlag}">
+																	<h:graphicImage library="img" name="reset_password.jpeg" 
+																		title="Change Password" width="22px" height="22px"/>
+																		
+																	<f:ajax execute="@this" 
+																		render=":formStyle:UpdateResetPassowrdActions :formStyle:UpdateSmsApiPasswordContainer"/>
+																		
+																	<f:setPropertyActionListener 
+																		target="#{sMSAPIBean.resetPasswordFlag}" 
+																		value="#{true}"/>
+																		
+																	<f:setPropertyActionListener 
+																		target="#{sMSAPIBean.password}" 
+																		value=""/>
+																</h:commandLink>
+																
+																<h:commandLink
+																	rendered="#{sMSAPIBean.resetPasswordFlag}"
+																	action="#{sMSAPIBean.resetPassword}">
+																	<h:graphicImage library="img" name="ok.png" 
+																		title="Save Password" width="22px" height="22px"/>
+																		
+																	<f:ajax execute=":formStyle:UpdateSmsApiPasswordInputText" 
+																		render=":formStyle:UpdateResetPassowrdActions :formStyle:UpdateSmsApiPasswordContainer :SearchForm:NotificationMessagesContainerPanelGroup"/>
+																</h:commandLink>
+																
+																<h:commandLink
+																	rendered="#{sMSAPIBean.resetPasswordFlag}">
+																	<h:graphicImage library="img" name="no.png" 
+																		title="Cancel" width="22px" height="22px"/>
+																		
+																	<f:ajax execute="@this" 
+																		render=":formStyle:UpdateResetPassowrdActions :formStyle:UpdateSmsApiPasswordContainer"/>
+																		
+																	<f:setPropertyActionListener 
+																		target="#{sMSAPIBean.resetPasswordFlag}" 
+																		value="#{false}"/>
+																		
+																	<f:setPropertyActionListener 
+																		target="#{sMSAPIBean.password}" 
+																		value=""/>
+																</h:commandLink>
+															</h:panelGroup>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<h:outputText value="Secret Key" />
+														</td>
+														
+														<td>
+															<h:outputText value="#{sMSAPIBean.secretKey}" 
+																id="UpdateSecretKey"/>
+														</td>
+														
+														<td>
+															<h:commandLink action="#{sMSAPIBean.regenerateSecretKey}"
+																onclick="return confirm('Are you sure, you want to regenerate secret key ?');">
+																<h:graphicImage library="img" name="reset_password.jpeg" 
+																	title="Regenerate Secret Key" width="22px" height="22px"/>
+																<f:ajax execute="@this" 
+																	render=":formStyle:UpdateSecretKey :SearchForm:NotificationMessagesContainerPanelGroup" />
+															</h:commandLink>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<h:outputText value="IP"
+																style="font-weight: normal;" />
+														</td>
+														
+														<td>
+															<h:inputText value="#{sMSAPIBean.ip}"
+																id="UpdateIPInputText"
+																validatorMessage="IP address does not valid">
+																<f:validator validatorId="IpValidator" />
+															</h:inputText>
+														</td>
+														
+														<td>
+															<h:commandLink action="#{sMSAPIBean.addNewIP}">
+																<f:ajax render=":formStyle:UpdateIPsTableContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup :formStyle:UpdateIPInputText" 
+																	execute=":formStyle:UpdateIPInputText" />
+																<h:graphicImage library="img" name="add_icon.png" />
+															</h:commandLink>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<span>IP List</span>
+														</td>
+														
+														<td>
+															<h:panelGroup id="UpdateIPsTableContainerPanelGroup">
+																<h:dataTable var="ipBean" value="#{sMSAPIBean.ipList}">
+																	<h:column>
+																		<h:outputText value="IP" style="top:-43px;left:-213px;" />
+																		<h:outputText value="#{ipBean}"
+																			style="left:48px;position:relative"
+																			validatorMessage="IP address does not valid" />
+																	</h:column>
+																	
+																	<h:column>
+																		<h:commandLink action="#{sMSAPIBean.removeIP}"
+																			style="position:relative;left:135px;top:4px;width:29px;"
+																			onclick="return confirm('Are you sure, you want to remove IP address ?');">
+																			<f:setPropertyActionListener
+																				target="#{sMSAPIBean.removedIP}" value="#{ipBean}" />
+																			<f:ajax execute="@this" render=":formStyle:UpdateIPsTableContainerPanelGroup" />
+																			<h:graphicImage library="img" name="remove_icon.png" />
+																		</h:commandLink>
+																	</h:column>
+																</h:dataTable>
+															</h:panelGroup>
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<br/>
+															<h:commandButton value="Update IPs List"
+																action="#{sMSAPIBean.updateAccountIpList}">
+																<f:ajax execute="@this"
+																	render=":formStyle:pnlview :formStyle:AccountsContainerPanelGroup :formStyle:AccountsPaginationContainerPanelGroup :SearchForm:NotificationMessagesContainerPanelGroup"/>
+															</h:commandButton>
+														</td>
+														
+														<td>
+															<br/>
+															<h:commandButton value="Cancel"
+																action="#{sMSAPIBean.cancelEditSmsAPIService}">
+																<f:ajax execute="@this" 
+																	render=":formStyle:pnlview" />
+															</h:commandButton>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</h:panelGroup>
+								</h:panelGroup>
+							</div>
+
+						</h:form>
+
+						<br />
+					</div>
+				</div>
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

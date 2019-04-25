@@ -1,0 +1,274 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>Web2SMS_Reporting-Ear</artifactId>
+	<packaging>ear</packaging>
+
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Reporting-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Common_DALayer</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Account_Management_Interfaces</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Reporting_Utils</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Reporting_War</artifactId>
+			<version>${project.parent.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Reporting_Service</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.edafa.web2sms.lib</groupId>
+			<artifactId>ez-vcard</artifactId>
+			<version>0.9.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.edafa.web2sms.lib</groupId>
+			<artifactId>csv_parser</artifactId>
+			<version>0.2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.13</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-codec</artifactId>
+					<groupId>commons-codec</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.13</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>xmlbeans</artifactId>
+					<groupId>org.apache.xmlbeans</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-codec</groupId>
+					<artifactId>commons-codec</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.4.2</version>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Web2SMS-Reporting</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+
+				<configuration>
+					<libraryDirectoryMode>DEFAULT</libraryDirectoryMode>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<generateApplicationXml>true</generateApplicationXml>
+					<applicationXml>${project.build.directory}/application.xml</applicationXml>
+
+					<applicationName>web2sms-reporting</applicationName>
+					<displayName>web2sms-reporting</displayName>
+					<finalName>web2sms-reporting</finalName>
+
+					<modules>
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Common_DALayer</artifactId>
+							<bundleFileName>Web2SMS_DALayer.jar</bundleFileName>
+						</ejbModule>
+
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Account_Management_Interfaces</artifactId>
+							<bundleFileName>Web2SMS_Account_Management_Interfaces.jar</bundleFileName>
+						</ejbModule>
+
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Reporting_Utils</artifactId>
+							<bundleFileName>Web2SMS-Reporting_Utils.jar</bundleFileName>
+						</ejbModule>
+
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Reporting_Service</artifactId>
+							<bundleFileName>Web2SMS-Reporting_Service.jar</bundleFileName>
+						</ejbModule>
+
+						<webModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Reporting_War</artifactId>
+							<bundleFileName>Web2SMS_Reporting_War.war</bundleFileName>
+						</webModule>
+
+						<ejbModule>
+							<groupId>com.edafa.jee</groupId>
+							<artifactId>app-error-manager</artifactId>
+							<bundleFileName>AppErrorManager.jar</bundleFileName>
+						</ejbModule>
+
+						<jarModule>
+							<groupId>com.edafa.web2sms.lib</groupId>
+							<artifactId>ez-vcard</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-api</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.poi</groupId>
+							<artifactId>poi-ooxml</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-core</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-web</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>com.lmax</groupId>
+							<artifactId>disruptor</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>dom4j</groupId>
+							<artifactId>dom4j</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>com.edafa.utils</groupId>
+							<artifactId>jcommons</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>com.edafa.jee</groupId>
+							<artifactId>alarms_utils</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>com.edafa.web2sms.lib</groupId>
+							<artifactId>csv_parser</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.poi</groupId>
+							<artifactId>poi</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<artifactId>xml-apis</artifactId>
+							<groupId>xml-apis</groupId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.poi</groupId>
+							<artifactId>poi-ooxml-schemas</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+
+						<jarModule>
+							<groupId>org.apache.commons</groupId>
+							<artifactId>commons-pool2</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+					</modules>
+
+					<envEntries>
+						<env-entry>
+							<env-entry-name>java:app/env/basedir</env-entry-name>
+							<env-entry-type>java.lang.String</env-entry-type>
+							<env-entry-value>web2sms-reporting/</env-entry-value>
+						</env-entry>
+						<env-entry>
+							<env-entry-name>java:app/env/reportingbaseDir</env-entry-name>
+							<env-entry-type>java.lang.String</env-entry-type>
+							<env-entry-value>web2sms-reporting/</env-entry-value>
+						</env-entry>
+					</envEntries>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
+
+

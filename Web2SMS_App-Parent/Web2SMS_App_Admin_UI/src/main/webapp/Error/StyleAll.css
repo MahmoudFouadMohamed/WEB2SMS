@@ -1,0 +1,554 @@
+@CHARSET "UTF-8";
+
+html,div,map,dt,isindex,form {
+	border: 0 none;
+	display: block;
+}
+
+html {
+	color: black;
+	font-family: Helvetica, Arial;
+	font-size: 14px;
+}
+
+body,div,ul,ol,li {
+	border: medium none;
+	margin: 0;
+	outline: medium none;
+	padding: 0;
+	vertical-align: top;
+}
+
+body {
+	background-color: #F0F0F0;
+	display: block;
+	position: relative;
+	width: 98%;
+	margin: auto;
+	color: #525252;
+	font: 14px Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #525252;
+}
+
+iframe {
+	width: 100%;
+	height: 400px;
+	border: 0 none;
+}
+
+textarea {
+	width: 350px;
+}
+
+select {
+	min-width: 156px;
+}
+
+/*----------------------------------------*/
+#Header {
+	clear: both;
+	width: 100%;
+	background: url("../img/HDR.png") #FB0000 !important;
+	color: white;
+	border: 1px solid #BD0000;
+	height: 50px !important;
+}
+
+#Header #HdrLeft {
+	float: left;
+	display: inline;
+	float: left;
+	height: 52px !important;
+	margin-top: 0;
+	padding-left: 7px;
+	padding-top: 4px;
+	width: 55px !important;
+}
+
+#Header #HdrLeft a:link,#Header #HdrLeft a:visited,#Header #HdrLeft a:hover
+	{
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#Header #HdrCenter {
+	float: left;
+}
+
+#Header #HdrRight {
+	float: right;
+}
+
+#container {
+	clear: both;
+	width: 100%;
+	padding-top: 7px;
+}
+/*-----------------------#navigation----------------------------------*/
+#container #navigation {
+	float: left;
+	width: 15%;
+	background: white;
+	border: 1px solid #a1a1a1;
+	min-height: 450px;
+}
+
+#navItems {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-indent: 5px;
+}
+
+#navItems div {
+	background: #a1a1a1;
+	font-size: 15px;
+	color: #F4F4F4;
+	font-weight: bold;
+}
+
+#navItems ul li {
+	font-size: 13px;
+	padding-left: 3px;
+	list-style-type: none;
+	border-bottom: 1px dotted #a1a1a1;
+	height: 15px;
+}
+
+#navItems ul li a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;;
+}
+
+#navItems ul li a:HOVER {
+	cursor: pointer;
+	color: red;
+}
+
+#navItems ul li a:LANG {
+	color: blue;
+}
+/*---------------------------Error page--------------*/
+.errorBody {
+	background: #F4F4F4;
+}
+
+.errorallDiv {
+	background: none repeat scroll 0 0 white;
+    border-radius: 20px 20px 20px 20px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    top: 130px;
+    width: 900px;
+}
+.errdiv{
+	clear: both;
+	
+}
+.errImg{
+	float: left;
+}
+.errText{
+		
+		font-size: 40px;
+		font-weight: bold;
+		padding-left:350px;
+}
+/*-----------------------------------usrLogin------------------*/
+#usrLogin {
+	background-color: red;
+	position: relative;
+}
+
+#loginForm {
+	background-color: white;
+	height: 200px;
+	width: 400px;
+	font-family: sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 9% 0 0 -20%;
+	padding: 6px;
+}
+
+#loginTitle {
+	font-size: 40px;
+	border-bottom: 3px solid #a1a1a1;
+	height: 60px;
+	line-height: 55px;
+	padding-left: 65px;
+	background: url("../img/Voda.png") no-repeat left;
+}
+
+#loginBody {
+	width: 100%;
+	padding: 9px;
+	font-size: large;
+	font-weight: bold;
+}
+/* .btnRed{
+	background: url("../img/btn_bg.png");
+	
+} */
+/*-----------------------#pgContent------------------*/
+.pgContent {
+	width: 84%;
+	background: white;
+	border: 1px solid #a1a1a1;
+	float: right;
+	min-height: 450px;
+}
+
+.pgTitle {
+	background: #a1a1a1;
+	font-size: large;
+	color: #F4F4F4;
+	font-weight: bold;
+	text-indent: 5px;
+}
+
+.unit {
+	font-size: 10px;
+}
+
+.tabadiv {
+	height: 25px !important;
+	background: url("../img/tabs_bg_hover.png") repeat-x white;
+	float: left;
+	vertical-align: middle;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 1px;
+	margin-bottom: 0px;
+	padding-top: 3px;
+	border: 1px solid #A1A1A1;
+}
+
+.tabadiv:HOVER {
+	padding-top: 5px;
+	float: left;
+}
+
+.toggledTab {
+	background-image: url( ../img/tabs_bg.png );
+	padding-top: 5px;
+	border-bottom: 1px solid white;
+}
+
+.tabs ul {
+	background: url("../img/tabs_bg_hover.png") repeat-x white;
+	height: 30px;
+}
+
+.tabs li {
+	list-style-type: none;
+	display: inline;
+	height: 30px;
+}
+
+.tabs li a {
+	height: 30px;
+	text-decoration: none;
+	color: inherit;
+}
+
+.tabpanels {
+	margin-top: 32px;
+	width: 99.5%;
+	border: 1px solid #A1A1A1;
+}
+
+.hide {
+	display: none;
+}
+
+.hideNav {
+	display: none;
+}
+
+.subMenu {
+	z-index: 3;
+	left: 98%;
+	position: relative;
+	top: -18px;
+	border: 2px solid #A1A1A1;
+	background-color: white !important;
+	color: #F4F4F4 !important;
+	font-size: 13px !important;
+	color: #525252 !important;
+	font-weight: normal !important;
+}
+
+.addDiv {
+	background-color: white;
+}
+
+.editDiv {
+	background-color: #FFE7DD;
+}
+
+.tblHeader {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+	width: 98.5%;
+	margin: auto;
+}
+
+.datatablecss {
+	width: 98.5%;
+	border: 1px solid #CAE8EA;
+	margin: auto;
+}
+
+.datatablecss  thead {
+	background: url("../img/tbldata_th_hdr.png") repeat-x #CAE8EA;
+	height: 20px;
+}
+
+.datatablecss tr:nth-child(even) {
+	background: #f3fbfd;
+}
+
+.datatablecss td {
+	text-align: center;
+	border-left: 1px solid #CAE8EA;
+}
+
+.PanelHdr {
+	background: url("../img/bullet_arrow_down.png") #BD0000 no-repeat right;
+	background-color: #BD0000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.PanelBody {
+	font-size: 12px;
+	overflow: auto;
+}
+
+.PnlContainer {
+	border: 1px solid #BD0000;
+}
+
+.slctMenuClass {
+	background: #F4F4F4;
+}
+
+.slctMenuClass table tbody td {
+	background: #F4F4F4;
+}
+
+.pgContainer {
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+	background-color: white;
+}
+
+.tblClass tr:nth-child(even) {
+	background: #F4F4F4;
+}
+
+.tblClass td:nth-child(odd) {
+	width: 15%;
+	font-weight: bold;
+}
+
+.tblClass td:nth-child(even) {
+	width: 35%;
+}
+
+.tblClass,.tblClass3 {
+	width: 99%;
+}
+/*  */
+.tblClass3 tr:nth-child(odd) {
+	background: #F4F4F4;
+}
+
+.tblClass3 td:nth-child(1) {
+	width: 10%;
+}
+
+.tblClass3 td:nth-child(2),.tblClass3 td:nth-child(4) {
+	width: 15%;
+}
+
+.tblClass3 td:nth-child(3),.tblClass3 td:nth-child(5) {
+	width: 30%;
+}
+
+.tblLsts {
+	max-height: 100px;
+	width: 99%;
+}
+
+.tblLsts th {
+	text-align: left;
+}
+
+.tblLsts th,.pnlHeader {
+	background-color: #A1A1A1;
+	color: #F4F4F4;
+}
+
+.tblLsts td {
+	vertical-align: top;
+}
+
+.tblLsts td:nth-child(even) {
+	background-color: #F4F4F4;
+}
+
+.btnsDiv {
+	float: right;
+}
+
+.navMainb {
+	background: url("../img/bullet_arrow_left.png") no-repeat right;
+}
+
+.dataTablePaging {
+	margin: auto;
+	width: 99%;
+	font-size: large;
+	text-align: center;
+}
+
+.dataTablePaging a {
+	cursor: pointer;
+	color: white;
+}
+
+.pageNum {
+	text-align: center;
+	clear: none;
+}
+
+.succeededMessage {
+	background: #dcfbdc;
+	border: 1px solid green;
+	margin: 5px;
+	padding: 5px;
+	list-style-type: none;
+}
+
+.failedMessage {
+	background: #fef6f3;
+	border: 1px solid red;
+	margin: 5px;
+	padding: 5px;
+}
+
+.errormessages {
+	background: #fef6f3;
+	border: 1px solid red;
+	margin: 10px;
+	padding: 5px;
+	list-style-type: none;
+}
+
+.loginResultMessages {
+	color: red;
+	font-size: small;
+	font-weight: normal;
+	pause: 5px;
+}
+
+.errormessageslogin {
+	list-style-type: none;
+}
+
+.spanTitle {
+	font-weight: bold;
+	padding-left: 16px;
+	background: url("../img/arrow_bullet.png") no-repeat left;
+}
+
+.autuoMargin {
+	margin: auto;
+}
+
+.innerDivWidth {
+	width: 98%;
+}
+
+.failAll {
+	padding-left: 18px;
+	background: url("../img/fail.png") no-repeat left;
+	text-decoration: none;
+}
+
+.successAll {
+	padding-left: 18px;
+	background: url("../img/success.png") no-repeat left;
+	text-decoration: none;
+}
+
+.reversePnl {
+	background-color: #f4f4f4;
+}
+
+.reversePnlTitl {
+	background-color: #d1cdcf;
+	padding: 5px;
+	cursor: pointer;
+}
+/*-----------------------Cntrols--------------*/
+.txtInput {
+	height: 12px;
+}
+
+/*------------------ css for timepicker ---------------*/
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+	height: 25px;
+	margin-bottom: -25px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: 0 10px 10px 65px;
+}
+
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ui-timepicker-rtl {
+	direction: rtl;
+}
+
+.ui-timepicker-rtl dl {
+	text-align: right;
+}
+
+.ui-timepicker-rtl dl dd {
+	margin: 0 65px 10px 10px;
+}
+
+/*------------------ css for timepicker End---------------*/

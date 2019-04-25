@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+	<title><ui:insert name="title"> Web2SMS </ui:insert></title>
+
+</h:head>
+
+<body>
+	<div id="all">
+		<div id="header">
+			<ui:insert name="header">
+
+				<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+				<ui:include src="/WEB-INF/Templates/CustomerCareHeader.xhtml" />
+			</ui:insert>
+		</div>
+
+
+		<div id="container">
+			<h:form>
+				<div id="navigation">
+					<div id="navItems">
+						<div id="sysAdmin">System Administration</div>
+						<ul>
+							<li><h:commandLink styleClass="navMain" value="Campaigns"
+									action="/CustomerCare/SearchCampaigns.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+								
+								<li><h:commandLink styleClass="navMain" value="Offline Reports"
+									action="/CustomerCare/Offline Reports.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+							<li><h:commandLink styleClass="navMain"
+									value="Ready SMS template"
+									action="/CustomerCare/SMSTemplates.xhtml?faces-redirect=true">
+								</h:commandLink></li>
+
+							<li><h:commandLink styleClass="navMain" value="Accounts"
+									action="/CustomerCare/CustomerAccounts.xhtml?faces-redirect=true">
+								</h:commandLink></li>
+
+							<li><h:commandLink styleClass="navMain" value="Intra Senders"
+									action="/CustomerCare/IntraSenders.xhtml?faces-redirect=true">
+								</h:commandLink></li>
+								
+							<li><h:commandLink styleClass="navMain" value="SMS API Service"
+									action="/CustomerCare/SMSAPIService.xhtml?faces-redirect=true ">
+								</h:commandLink></li>
+						</ul>
+					</div>
+
+				</div>
+			</h:form>
+
+			<div class="pgContent">
+				<div id="content">
+					<ui:insert name="content">
+						<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+						<!-- <div> -->
+						<!-- <ui:include src="content.xhtml"/> -->
+						<!-- </div> -->
+					</ui:insert>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<ui:insert name="footer">
+				<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
+				<ui:include src="/WEB-INF/Templates/CustomerCareFooter.xhtml" />
+			</ui:insert>
+		</div>
+	</div>
+</body>
+</html>

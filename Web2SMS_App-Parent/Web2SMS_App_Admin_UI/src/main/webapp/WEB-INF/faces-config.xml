@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+	version="2.1">
+	<application>
+		<message-bundle id="msg">resources.application</message-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+	</application>
+	<managed-bean>
+		<managed-bean-name>sMSTemplateBean</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.SMSTemplateBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tierBean</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.TierBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>systemLogin</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.login.SystemLogin</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>searchCampaignsBean</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.SearchCampaignsBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>customerAccountBean</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.CustomerAccountBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>configsBean</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.ConfigsBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>offlineReports</managed-bean-name>
+		<managed-bean-class>com.edafa.web2sms.ui.admin.OfflineReports</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+</faces-config>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+    <Appenders>
+        <RollingRandomAccessFile name="PROV_UTILS_appender"  fileName="web2sms-prov-service/logs/web2sms_app.log"
+                                 filePattern="web2sms-prov-service/logs/web2sms_app.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+        ===================================================================================================
+        <RollingRandomAccessFile name="PROV_appender"  fileName="web2sms-prov-service/logs/web2sms_prov.log"
+                                 filePattern="web2sms-prov-service/logs/web2sms_prov.log.%d{yyyy-MM-dd}" append="true">
+            <PatternLayout pattern="%d{yyyyMMdd HH:mm:ss.SSS z} | %p | %.30t | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+        ===================================================================================================
+
+    <Loggers>
+        <Root level="trace">
+        </Root>
+        ===================================================================================================
+        <AsyncLogger name="PROV_UTILS" level="INFO">
+            <AppenderRef ref="PROV_UTILS_appender"/>
+        </AsyncLogger>
+        ===================================================================================================
+        <AsyncLogger name="PROV" level="INFO">
+            <AppenderRef ref="PROV_appender"/>
+        </AsyncLogger>
+       
+   </Loggers>
+</Configuration>

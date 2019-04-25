@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ns1="http://www.edafa.com/web2sms/service/enums/" xmlns:ns0="http://www.edafa.com/web2sms/sms/model/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.edafa.com/web2sms/sms/model/">
+   <xsd:import schemaLocation="www.edafa.com_web2sms_service_enums_.xsd" namespace="http://www.edafa.com/web2sms/service/enums/"/>
+   <xsd:complexType name="SMSResponseWithDatesAndMsisdn">
+      <xsd:sequence>
+         <xsd:element name="SmsDates" type="ns0:SmsDates" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSByIdResponseList">
+      <xsd:sequence>
+         <xsd:element name="smsId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSStatus" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SendDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceivedDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="DeliveryDate" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SMSDetails">
+      <xsd:sequence>
+         <xsd:element name="SenderName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSText" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSResponseWithDatesAndMsisdn">
+      <xsd:sequence>
+         <xsd:element name="SMSResponseWithDatesAndMsisdn" type="ns0:SMSResponseWithDatesAndMsisdn" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSByIdDetailedRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:EnquireSMSByIdRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSsByDatesResponse">
+      <xsd:sequence>
+         <xsd:element name="smsApiDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="smsApiUnDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="apiCampDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="apiCampUnDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSRequest">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSList" type="ns0:SMSDetails" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitDetailedSMSRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:SubmitSMSRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string"/>
+               <xsd:element name="TRX_ID" type="xsd:string"/>
+               <xsd:element name="SMSID_PREFIX" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="CampaignInquiryResponse">
+      <xsd:sequence>
+         <xsd:element name="NumOfDeliveredSeg" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="NumOfUnDeliveredSeg" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="CampaignStatus" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SubmittedRatio" type="xsd:double" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireCampaignByIdRequest">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CampaignId" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SmsDatesWithMSISDN">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:SmsDates">
+            <xsd:sequence>
+               <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSsByDatesDetailedRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:EnquireSMSsByDatesRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="SMSSubmitState"/>
+   <xsd:complexType name="SMSResponseBySmsId">
+      <xsd:sequence>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="smsId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSStatus" type="ns1:SMSResponseStatus" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitCamaignResponse">
+      <xsd:sequence>
+         <xsd:element name="campaignId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireCampaignByIdResponse">
+      <xsd:sequence>
+         <xsd:element name="NumOfDeliveredSeg" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="NumOfUnDeliveredSeg" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="CampaignStatus" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SubmittedRatio" type="xsd:double" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSsByDatesAndMSISDNResponseList">
+      <xsd:sequence>
+         <xsd:element name="SmsDates" type="ns0:SmsDates" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSRequestWithSmsId">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="smsId" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitDetailedSMSRequestWithSmsId">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:SubmitSMSRequestWithSmsId">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="SmsResponseStatistics">
+      <xsd:sequence>
+         <xsd:element name="smsApiDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="smsApiUnDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="apiCampDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="apiCampUnDelivered" type="xsd:int" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CampaignInquiryDetailedRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:CampaignInquiryRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="SmsDates">
+      <xsd:sequence>
+         <xsd:element name="smsId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSStatus" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SendDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceivedDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="DeliveryDate" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSByIdResponse">
+      <xsd:sequence>
+         <xsd:element name="EnquireSMSByIdResponseList" type="ns0:EnquireSMSByIdResponseList" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSsByDatesAndMSISDNResponse">
+      <xsd:sequence>
+         <xsd:element name="EnquireSMSsByDatesAndMSISDNResponseList" type="ns0:EnquireSMSsByDatesAndMSISDNResponseList" minOccurs="0"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitDetailedCampaignRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:SubmitCampaignRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="CampaignInquiryRequest">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="CampaignId" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireCampaignByIdDetailedRequest">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:EnquireCampaignByIdRequest">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSsByDatesRequest">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="StartDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EndDate" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSResponseBySmsId">
+      <xsd:sequence>
+         <xsd:element name="SMSResponseBySmsId" type="ns0:SMSResponseBySmsId" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitCampaignRequest">
+      <xsd:sequence>
+         <xsd:element name="CampaignName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SMSText" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SenderName" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="MSISDNsList" type="ns0:CampaignReceiverDetails" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSResponse">
+      <xsd:sequence>
+         <xsd:element name="SMSStatus" type="ns1:SMSResponseStatus" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element name="ResultStatus" type="ns1:ResultStatus" minOccurs="0"/>
+         <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EnquireSMSByIdRequest">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="smsId" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitSMSRequestWithDatesAndMsisdn">
+      <xsd:sequence>
+         <xsd:element name="AccountId" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="Password" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="SecureHash" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="StartDate" type="xsd:string" minOccurs="0"/>
+         <xsd:element name="EndDate" type="xsd:string" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CampaignReceiverDetails">
+      <xsd:sequence>
+         <xsd:element name="ReceiverMSISDN" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubmitDetailedSMSRequestWithDatesAndMsisdn">
+      <xsd:complexContent>
+         <xsd:extension base="ns0:SubmitSMSRequestWithDatesAndMsisdn">
+            <xsd:sequence>
+               <xsd:element name="IP" type="xsd:string" minOccurs="0"/>
+               <xsd:element name="TRXID" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:element name="SubmitCamaignResponse" type="ns0:SubmitCamaignResponse"/>
+   <xsd:element name="EnquireCampaignByIdResponse" type="ns0:EnquireCampaignByIdResponse"/>
+   <xsd:element name="SubmitSMSRequestWithSmsId" type="ns0:SubmitSMSRequestWithSmsId"/>
+   <xsd:element name="SubmitSMSResponseWithDatesAndMsisdn" type="ns0:SubmitSMSResponseWithDatesAndMsisdn"/>
+   <xsd:element name="SubmitDetailedSMSRequestWithSmsId" type="ns0:SubmitDetailedSMSRequestWithSmsId"/>
+   <xsd:element name="EnquireSMSsByDatesResponse" type="ns0:EnquireSMSsByDatesResponse"/>
+   <xsd:element name="EnquireSMSByIdDetailedRequest" type="ns0:EnquireSMSByIdDetailedRequest"/>
+   <xsd:element name="SmsResponseStatistics" type="ns0:SmsResponseStatistics"/>
+   <xsd:element name="SubmitSMSRequest" type="ns0:SubmitSMSRequest"/>
+   <xsd:element name="CampaignInquiryDetailedRequest" type="ns0:CampaignInquiryDetailedRequest"/>
+   <xsd:element name="SubmitDetailedSMSRequest" type="ns0:SubmitDetailedSMSRequest"/>
+   <xsd:element name="EnquireSMSByIdResponse" type="ns0:EnquireSMSByIdResponse"/>
+   <xsd:element name="SubmitDetailedCampaignRequest" type="ns0:SubmitDetailedCampaignRequest"/>
+   <xsd:element name="EnquireSMSsByDatesAndMSISDNResponse" type="ns0:EnquireSMSsByDatesAndMSISDNResponse"/>
+   <xsd:element name="CampaignInquiryRequest" type="ns0:CampaignInquiryRequest"/>
+   <xsd:element name="EnquireCampaignByIdDetailedRequest" type="ns0:EnquireCampaignByIdDetailedRequest"/>
+   <xsd:element name="EnquireSMSsByDatesRequest" type="ns0:EnquireSMSsByDatesRequest"/>
+   <xsd:element name="SubmitSMSResponseBySmsId" type="ns0:SubmitSMSResponseBySmsId"/>
+   <xsd:element name="SubmitCampaignRequest" type="ns0:SubmitCampaignRequest"/>
+   <xsd:element name="CampaignInquiryResponse" type="ns0:CampaignInquiryResponse"/>
+   <xsd:element name="SubmitSMSResponse" type="ns0:SubmitSMSResponse"/>
+   <xsd:element name="EnquireSMSByIdRequest" type="ns0:EnquireSMSByIdRequest"/>
+   <xsd:element name="SubmitSMSRequestWithDatesAndMsisdn" type="ns0:SubmitSMSRequestWithDatesAndMsisdn"/>
+   <xsd:element name="EnquireCampaignByIdRequest" type="ns0:EnquireCampaignByIdRequest"/>
+   <xsd:element name="SubmitDetailedSMSRequestWithDatesAndMsisdn" type="ns0:SubmitDetailedSMSRequestWithDatesAndMsisdn"/>
+   <xsd:element name="EnquireSMSsByDatesDetailedRequest" type="ns0:EnquireSMSsByDatesDetailedRequest"/>
+</xsd:schema>

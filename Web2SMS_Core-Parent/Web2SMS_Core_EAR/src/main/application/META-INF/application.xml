@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+  <display-name>Web2SMS-Core_EAR</display-name>
+  <module>
+    <ejb>Web2SMS-Core_Utils.jar</ejb>
+  </module>
+  <module>
+    <ejb>Web2SMS-Core_Main.jar</ejb>
+  </module>
+  <module>
+    <ejb>Web2SMS_Common_DALayer.jar</ejb>
+  </module>
+  <module>
+    <ejb>SMSGW_Utils.jar</ejb>
+  </module>
+  <module>
+    <ejb>SMSGW_SMSHandler.jar</ejb>
+  </module>
+  <module>
+    <ejb>SMSGW_DALayer.jar</ejb>
+  </module>
+  <module>
+    <ejb>AppErrorManager.jar</ejb>
+  </module>
+  <library-directory>lib</library-directory>
+  <env-entry>
+    <description>base path for web2sms_Core</description>
+    <env-entry-name>java:app/env/basedir</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>web2sms-core/</env-entry-value>
+  </env-entry>
+  <env-entry>
+    <env-entry-name>java:app/env/smsgw_basedir</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>web2sms-core/</env-entry-value>
+  </env-entry>
+</application>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns0="http://www.edafa.com/web2sms/prov/TIBCO" targetNamespace="http://www.edafa.com/web2sms/prov/TIBCO"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jaxb:schemaBindings>
+				<jaxb:package name="com.edafa.web2sms.prov.tibco.types" />
+			</jaxb:schemaBindings>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+
+	<!-- Simple types -->
+
+	<xsd:simpleType name="internationalMSISDN">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{12,15}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<xsd:simpleType name="ratePlan">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="3" />
+			<xsd:maxLength value="50" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="senderName">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="3" />
+			<xsd:maxLength value="11" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="accountHolderIdType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="2" />
+			<xsd:maxLength value="100" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<!-- Complex types -->
+
+	<xsd:complexType name="provisioningRequest">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="requestId">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="3"></xsd:minLength>
+						<xsd:maxLength value="50"></xsd:maxLength>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="provisioningStatus">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="status">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="2" />
+						<xsd:maxLength value="100" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="errorMessage" nillable="true">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="3" />
+						<xsd:maxLength value="255" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="accountInfo">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningStatus">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element name="accountId">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="3" />
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="accountStatus">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="3" />
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="rateplan" type="ns0:ratePlan" />
+					<xsd:element name="senderName" type="ns0:senderName" />
+					<xsd:element name="pendingRequests" minOccurs="1"
+						maxOccurs="unbounded" type="ns0:pendingProvRequest" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="pendingProvRequest">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="requestId">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="3" />
+						<xsd:maxLength value="100" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="requstType">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1" />
+						<xsd:maxLength value="50" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="requestTimestamp" type="xsd:dateTime" />
+			<xsd:element nillable="true" name="rateplan" type="ns0:ratePlan" />
+			<xsd:element nillable="true" name="senderName" type="ns0:senderName" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="activateServiceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element name="billingMSISDN" type="ns0:internationalMSISDN" />
+					<xsd:element name="ratePlan" type="ns0:ratePlan" />
+					<xsd:element name="senderName" type="ns0:senderName" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="activateServiceResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="downgradeServiceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element nillable="true" name="oldRatePlan" type="ns0:ratePlan" />
+					<xsd:element name="newRatePlan" type="ns0:ratePlan" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="upgradeServiceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element nillable="true" name="oldRatePlan" type="ns0:ratePlan" />
+					<xsd:element name="newRatePlan" type="ns0:ratePlan" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="upgradeServiceResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="downgradeServiceResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="deactivateServiceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="deactivateServiceResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="confirmSenderNameChangeRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element nillable="true" name="newSenderName" type="ns0:senderName" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="confirmSenderNameChangeResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="changeSenderNameRequest">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="accountHolderId" type="ns0:accountHolderIdType" />
+			<xsd:element nillable="true" name="oldSenderName" type="ns0:senderName" />
+			<xsd:element name="newSenderName" type="ns0:senderName" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="changeSenderNameResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="getAccountInfoRequest">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="accountHolderId" type="ns0:accountHolderIdType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="getAccountInfoResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="accountInfo" type="ns0:accountInfo" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="cancelProvRequest">
+		<xsd:complexContent>
+			<xsd:extension base="ns0:provisioningRequest">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="cancelProvRequestResponse">
+		<xsd:sequence minOccurs="1" maxOccurs="1">
+			<xsd:element name="returnStatus" type="ns0:provisioningStatus" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Elements -->
+
+	<xsd:element name="activateServiceRequest" type="ns0:activateServiceRequest" />
+	<xsd:element name="activateServiceResponse" type="ns0:activateServiceResponse" />
+
+	<xsd:element name="downgradeServiceRequest" type="ns0:downgradeServiceRequest" />
+	<xsd:element name="downgradeServiceResponse" type="ns0:downgradeServiceResponse" />
+
+	<xsd:element name="upgradeServiceRequest" type="ns0:upgradeServiceRequest" />
+	<xsd:element name="upgradeServiceResponse" type="ns0:upgradeServiceResponse" />
+
+	<xsd:element name="confirmSenderNameChangeRequest" type="ns0:confirmSenderNameChangeRequest" />
+	<xsd:element name="confirmSenderNameChangeResponse" type="ns0:confirmSenderNameChangeResponse" />
+
+	<xsd:element name="provisioningStatus" type="ns0:provisioningStatus" />
+
+	<xsd:element name="deactivateServiceResponse" type="ns0:deactivateServiceResponse" />
+	<xsd:element name="deactivateServiceRequest" type="ns0:deactivateServiceRequest" />
+
+	<xsd:element name="accountInfo" type="ns0:accountInfo" />
+	<xsd:element name="getAccountInfoRequest" type="ns0:getAccountInfoRequest" />
+	<xsd:element name="getAccountInfoResponse" type="ns0:getAccountInfoResponse" />
+
+	<xsd:element name="changeSenderNameRequest" type="ns0:changeSenderNameRequest" />
+	<xsd:element name="changeSenderNameResponse" type="ns0:changeSenderNameResponse" />
+
+	<xsd:element name="cancelProvRequestRequest" type="ns0:cancelProvRequest" />
+	<xsd:element name="cancelProvRequestResponse" type="ns0:cancelProvRequestResponse" />
+
+	<xsd:element name="provisioningRequest" type="ns0:provisioningRequest" />
+
+</xsd:schema>

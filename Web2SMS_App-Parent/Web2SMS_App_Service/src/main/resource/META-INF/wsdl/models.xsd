@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. 
+	RI's version is JAX-WS RI 2.2.8-b13937 svn-revision#13942. -->
+<xsd:schema xmlns:ns0="http://www.edafa.com/web2sms/service/model/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.edafa.com/web2sms/service/model/">
+	<xsd:complexType name="ContactModel">
+		<xsd:sequence>
+			<xsd:element name="firstName" type="xsd:string"
+				minOccurs="0" nillable="true" />
+			<xsd:element name="lastName" type="xsd:string" minOccurs="0"
+				nillable="true" />
+			<xsd:element name="msisdn" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResultStatus">
+		<xsd:sequence>
+			<xsd:element name="status" type="xsd:string" />
+			<xsd:element name="errorMessage" type="xsd:string"
+				nillable="true" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SubmittedCampaignModel">
+		<xsd:sequence>
+			<xsd:element name="campaignName" type="xsd:string" />
+			<xsd:element name="smsText" type="xsd:string" />
+			<xsd:element name="language" type="xsd:string" />
+			<xsd:element name="senderName" type="xsd:string" />
+			<xsd:element name="scheduleStartTimestamp" type="xsd:dateTime" />
+			<xsd:element name="scheduleEndTimestamp" type="xsd:dateTime"
+				nillable="true" />
+			<xsd:element name="scheduleFrequency" type="xsd:string" />
+			<xsd:element name="individualContact" type="ns0:ContactModel"
+				minOccurs="0" maxOccurs="unbounded" nillable="true" />
+			<xsd:element name="contactList" type="xsd:int" maxOccurs="unbounded"
+				nillable="true" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UserModel">
+		<xsd:sequence>
+			<xsd:element name="username" type="xsd:string" />
+			<xsd:element name="accountId" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

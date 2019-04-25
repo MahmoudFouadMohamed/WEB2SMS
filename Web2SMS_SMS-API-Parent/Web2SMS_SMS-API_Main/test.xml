@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SubmitSMSRequest>
+	<UserName>ahmed</UserName>
+	<Password>pass</Password>
+	<SecureHash>hash</SecureHash>
+	<SMSs>
+		<SMSDetails>
+			<SenderName>Sender</SenderName>
+			<ReciverMSISDN>01008284826</ReciverMSISDN>
+			<Language>ENG</Language>
+			<SMSText>Testing</SMSText>
+			<DeliveryReport>true</DeliveryReport>
+		</SMSDetails>
+	</SMSs>
+</SubmitSMSRequest>

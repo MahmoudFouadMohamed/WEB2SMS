@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:SubmitSMSRequest xmlns:ns0="http://www.edafa.com/web2sms/sms/model/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.edafa.com/web2sms/sms/model/ SMSAPI.xsd ">
+  <UserName>UserName</UserName>
+  <Password>Password</Password>
+  <SecureHash>SecureHash</SecureHash>
+  <SMSs>
+    <SenderName>SenderName</SenderName>
+    <ReciverMSISDN>ReciverMSISDN</ReciverMSISDN>
+    <Language>Language</Language>
+    <SMSText>SMSText</SMSText>
+    <DeliveryReport>true</DeliveryReport>
+  </SMSs>
+</ns0:SubmitSMSRequest>

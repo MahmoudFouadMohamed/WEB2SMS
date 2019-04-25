@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ns0="http://www.edafa.com/web2sms/service/enums/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.edafa.com/web2sms/service/enums/">
+   <xsd:simpleType name="ResultStatus">
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="SUCCESS"/>
+         <xsd:enumeration value="INVALID_REQUEST"/>
+         <xsd:enumeration value="INTERNAL_SERVER_ERROR"/>
+         <xsd:enumeration value="GENERIC_ERROR"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="SMSResponseStatus">
+      <xsd:restriction base="xsd:string">
+         <xsd:enumeration value="SUBMITTED"/>
+         <xsd:enumeration value="FAILED_TO_SUBMITTED"/>
+         <xsd:enumeration value="TIMMED_OUT"/>
+      </xsd:restriction>
+   </xsd:simpleType>
+</xsd:schema>

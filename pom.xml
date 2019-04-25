@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.edafa.web2sms</groupId>
+	<artifactId>Web2sms_Parent</artifactId>
+	<version>2.5B</version>
+	<packaging>pom</packaging>
+
+	<repositories>
+		<repository>
+			<id>edafa-releases-repository</id>
+			<name>Edafa Releases Repo</name>
+			<url>http://edafanode1:8085/nexus/content/repositories/edafa-releases-repository/</url>
+		</repository>
+		<repository>
+			<id>edafa-snapshots-repository</id>
+			<name>Edafa snapshots Repo</name>
+			<url>http://edafanode1:8085/nexus/content/repositories/edafa-snapshots-repository/</url>
+		</repository>
+		<repository>
+			<id>thirdparty</id>
+			<name>Edafa thirdparty Repo</name>
+			<url>http://edafanode1:8085/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.toplink</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-core-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-multipart-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>jersey-client-1.17.1</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>com.oracle.css.common.security.xacml_7.0.0.0</artifactId>
+			<version>12.1.2-0-0</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<version>6</version>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Properties plugin configuration -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>properties-maven-plugin</artifactId>
+					<version>1.0-alpha-2</version>
+					<executions>
+						<!-- Associate the read-project-properties goal with the initialize 
+							phase, to read the properties file. -->
+						<execution>
+							<phase>initialize</phase>
+							<goals>
+								<goal>read-project-properties</goal>
+							</goals>
+							<configuration>
+								<files>
+									<file>project.properties</file>
+								</files>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>edafa-releases-repository</id>
+			<name>Edafa Releases Repo</name>
+			<url>http://edafanode1:8085/nexus/content/repositories/edafa-releases-repository/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>edafa-snapshots-repository</id>
+			<name>Edafa Snapshots Repo</name>
+			<url>http://edafanode1:8085/nexus/content/repositories/edafa-snapshots-repository/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<modules>
+		<module>Web2SMS_Common_DALayer</module>
+		<module>Web2SMS_Account_Management_Parent</module>
+		<module>Web2SMS_SMS-API-Parent</module>
+		<module>Web2SMS_Core-Parent</module>
+		<module>Web2SMS_App-Parent</module>
+		<module>Web2SMS_Prov-Parent</module>
+		<module>Web2SMS_Reporting-Parent</module>
+		<module>Web2SMS_Prov_Service-Parent</module>
+		<module>EARS</module>
+	</modules>
+</project>

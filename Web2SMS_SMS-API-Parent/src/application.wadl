@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wadl:application xmlns:wadl="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <wadl:doc xmlns:enunciate="http://enunciate.codehaus.org/" enunciate:generatedBy="Enunciate-1.29"/>
+  <wadl:grammars/>
+  <wadl:resources base="http://localhost:8080/Web2SMS_SMS-API_Main">
+    <wadl:resource path="/resources/submit">
+      <wadl:method name="POST">
+        <wadl:request>
+          <wadl:representation mediaType="application/xml"/>
+        </wadl:request>
+        <wadl:response>
+          <wadl:representation mediaType="*/*"/>
+          <wadl:representation mediaType="application/xml"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+    <wadl:resource path="/xml/submit">
+      <wadl:method name="POST">
+        <wadl:request>
+          <wadl:representation mediaType="application/xml"/>
+        </wadl:request>
+        <wadl:response>
+          <wadl:representation mediaType="application/xml"/>
+        </wadl:response>
+      </wadl:method>
+    </wadl:resource>
+  </wadl:resources>
+</wadl:application>

@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.edafa.web2sms.clients</groupId>
+	<artifactId>ReportManagementService</artifactId>
+	<version>1</version>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.oracle.weblogic</groupId>
+			<artifactId>com.oracle.webservices.user-api_12.1.2</artifactId>
+			<version>12.1.2-0-0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>weblogic-maven-plugin</artifactId>
+				<version>12.1.2-0-0</version>
+				<executions>
+					<execution>
+						<id>clientgen</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>ws-clientgen</goal>
+						</goals>
+
+						<configuration>
+							<wsdl>http://localhost:7101/ReportManagementServiceImpl/ReportManagementService?WSDL</wsdl>
+							<destDir> ${project.build.outputDirectory}</destDir>
+							<!-- <copyWsdl>true</copyWsdl> -->
+							<jmstransportclient>
+								<jndiUrl>t3://127.0.0.1:7101</jndiUrl>
+							</jmstransportclient>
+						</configuration>
+					</execution>
+				</executions>
+				<!-- <configuration> <adminurl>t3://127.0.0.1:7101</adminurl> <user>weblogic</user> 
+					<password>welcome1</password> <srcWsdl>http://localhost:7101/CampaignManagementServiceImpl/CampaignManagementService?wsdl</srcWsdl> 
+					</configuration> -->
+			</plugin>
+
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.oracle.weblogic
+										</groupId>
+										<artifactId>
+											weblogic-maven-plugin
+										</artifactId>
+										<versionRange>
+											[12.1.2-0-0,)
+										</versionRange>
+										<goals>
+											<goal>ws-clientgen</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/WEB-INF/Templates/CustomerCareTemplate.xhtml">
+	<style>
+</style>
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Intra Senders</div>
+			<div class="pgContainer">
+
+				<div class="PanelBody">
+					<div class="PnlContainer">
+						<div class="PanelHdr">#{(intrSenderBean.editFlag)?
+							msg.update: msg.add} Intra Sender</div>
+						<div class="PanelBody" style="overflow-x: hidden;">
+							<h:form id="AddEditForm">
+								<h:panelGroup id="NotificationMessagesContainerPanelGroup">
+									<h:messages errorClass="errormessages"
+										infoClass="succeededMessage" />
+									<script type="text/javascript">
+								$(".errormessages").corner();
+								$(".succeededMessage").corner();
+							</script>
+								</h:panelGroup>
+
+								<div class="reversePnl">
+									<div class="reversePnlBdy">
+										<table>
+											<tr>
+												<td>Intra Sender Name</td>
+												<td><h:inputText id="intraName"
+														value="#{intraSenderBean.intraSenderName}"></h:inputText></td>
+											</tr>
+										</table>
+										<h:commandLink value="Choose Accounts"
+											action="#{intraSenderBean.viewDetails}" class="viewDetails">
+											<f:ajax execute="@this" render=" :AddEditForm:pnlview" />
+										</h:commandLink>
+										<br></br>
+									</div>
+								</div>
+								<div id="detailsView">
+									<h:panelGroup id="pnlview">
+										<h:panelGroup id="pnlview2"
+											rendered="#{intraSenderBean.viewDetailsFlag}">
+											<table>
+												<thead>
+													<tr>
+														<h:graphicImage library="img" name="SearchIcon.png"
+															style="position:relative;top:5px;" />
+														<h:inputText
+															styleClass="mmagd_2sms_campain_txt_field_erea mmagd_2sms_contact_page_input_padding"
+															type="text" size="16"
+															value="#{intraSenderBean.searchValue}">
+															<f:ajax event="keyup"
+																listener="#{intraSenderBean.searchAccount}"
+																render=":AddEditForm:pnlview" />
+														</h:inputText>
+													</tr>
+												</thead>
+												<tr>
+													<td><h:selectManyCheckbox
+															value="#{intraSenderBean.selectedAccounts}"
+															layout="pageDirection" layoutWidth="6"
+															styleClass="selection"
+															converter="com.edafa.web2sms.ui.converter.AccountConverter">
+															<f:selectItems value="#{intraSenderBean.accounts}"
+																var="last" itemLabel="#{last.companyName}"
+																itemValue="#{last}" />
+														</h:selectManyCheckbox></td>
+												</tr>
+											</table>
+										</h:panelGroup>
+									</h:panelGroup>
+								</div>
+								<h:commandButton action="#{intraSenderBean.addIntraSenderName}"
+									onclick="if(#{intraSenderBean.editFlag})return confirm('#{msg.areYouSureUpdate} (#{intraSenderBean.intraSenderName}) ?');"
+									value="#{(intraSenderBean.editFlag)? msg.update : msg.add} " />
+								<h:commandButton value="Reset" action="#{intraSenderBean.reset}">
+									<f:ajax execute="@this"
+										render=":AddEditForm:pnlview  :AddEditForm:intraName" />
+								</h:commandButton>
+							</h:form>
+						</div>
+			</div>
+
+						<div class="PanelBody">
+							<br />
+							<div>
+								<h:form id="formStyle">
+									<div class="dataTablePaging">
+										<h:panelGroup id="AccountsPaginationContainerPanelGroup">
+											<h:commandLink action="#{intraSenderBean.FirstPage}">
+												<img alt="First"
+													src="${facesContext.externalContext.requestContextPath}/img/First#{(intraSenderBean.currentPage==0)?'grey':''}.png" />
+											</h:commandLink>
+											<h:commandLink action="#{intraSenderBean.previousPage}">
+												<img alt="Previous"
+													src="${facesContext.externalContext.requestContextPath}/img/Previous#{(intraSenderBean.currentPage==0)?'grey':''}.png" />
+											</h:commandLink>
+											<h:outputText
+												value="#{general.getCeil((intraSenderBean.currentPage)/intraSenderBean.pageSize,intraSenderBean.rowCount/intraSenderBean.pageSize)}"></h:outputText>
+										of
+										<h:outputText
+												value="#{general.getCeil( intraSenderBean.rowCount/intraSenderBean.pageSize )}"></h:outputText>
+											<h:commandLink action="#{intraSenderBean.nextPage}">
+												<img alt="Next"
+													src="${facesContext.externalContext.requestContextPath}/img/Next#{(intraSenderBean.currentPage+intraSenderBean.pageSize >=intraSenderBean.rowCount)?'grey':''}.png" />
+											</h:commandLink>
+											<h:commandLink action="#{intraSenderBean.LastPage}">
+												<img alt="Last"
+													src="${facesContext.externalContext.requestContextPath}/img/Last#{(intraSenderBean.currentPage+intraSenderBean.pageSize >=intraSenderBean.rowCount)?'grey':''}.png" />
+											</h:commandLink>
+										</h:panelGroup>
+									</div>
+									<div>
+										<h:panelGroup id="AccountsContainerPanelGroup">
+											<h:dataTable var="iintraSenderBean"
+												columnClasses="Col,Col,widthCol,Col,Col,Col"
+												value="#{intraSenderBean.intraSenderList}"
+												styleClass="datatablecss" cellspacing="0" cellpadding="0">
+												<h:column>
+													<f:facet name="header">
+														<h:outputText id="IntraSenderName"></h:outputText>
+													</f:facet>
+													<h:outputText id="intraSenderBeanId"
+														value="#{iintraSenderBean.intraSenderId}"></h:outputText>
+												</h:column>
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="IntraSender Name"></h:outputText>
+													</f:facet>
+													<h:outputText id="intraSenderBeanDesc"
+														value="#{iintraSenderBean.senderName}">
+													</h:outputText>
+												</h:column>
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="accounts"></h:outputText>
+													</f:facet>
+													<h:commandLink value="View accounts" class="viewQ"
+														action="#{intraSenderBean.intraSenderAccounts}">
+														<f:setPropertyActionListener
+															target="#{intraSenderBean.intraSender}"
+															value="#{iintraSenderBean}" />
+														<f:ajax
+															render=":formStyle:pnlTerminal :formStyle:IntraSenderName"
+															execute="@this"></f:ajax>
+
+													</h:commandLink>
+
+
+												</h:column>
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Update"></h:outputText>
+													</f:facet>
+													<h:commandLink value="Update"
+														action="#{intraSenderBean.editIntraSender}">
+														<f:setPropertyActionListener
+															target="#{intraSenderBean.intraSender}"
+															value="#{iintraSenderBean}" />
+													</h:commandLink>
+												</h:column>
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Delete"></h:outputText>
+													</f:facet>
+													<h:commandLink value="Delete"
+														onclick="return confirm('#{msg.areYouSureDelete} (#{iintraSenderBean.senderName}) ?');"
+														action="#{intraSenderBean.deleteIntraSender(iintraSenderBean.intraSenderId)}"></h:commandLink>
+												</h:column>
+											</h:dataTable>
+										</h:panelGroup>
+									</div>
+									<br />
+
+									<div id="accDetails" title="Accounts" style="width: 500px;">
+										<h:panelGroup id="pnlTerminal" width="98%">
+											<br></br>
+											<center>
+												<div>
+													<b>Sender Name : </b>
+													<h:outputLabel value="#{intraSenderBean.intraSenderNameViewAccounts}"
+														id="IntraSenderName"></h:outputLabel>
+												</div>
+											</center>
+											<br></br>
+											<div id="add_Terminal">
+												<h:panelGrid columns="2" styleClass="tblClass">
+													<h:dataTable value="#{intraSenderBean.intraAccounts}"
+														var="i" styleClass="datatablecss" cellspacing="0"
+														cellpadding="0">
+														<h:column>
+															<f:facet name="header">
+																<h:outputText value="company name"></h:outputText>
+															</f:facet>
+															<h:outputText value="#{i.companyName}"></h:outputText>
+														</h:column>
+
+													</h:dataTable>
+												</h:panelGrid>
+											</div>
+
+										</h:panelGroup>
+
+
+										<br />
+									</div>
+
+								</h:form>
+								<br />
+							</div>
+						</div>
+					</div>
+				</div>
+
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

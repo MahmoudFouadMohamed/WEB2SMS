@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/Templates/AdministratorTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+			<div class="pgTitle">Configuration</div>
+			<div class="pgContainer">
+
+
+				<h:form>
+					<h:messages errorClass="errormessages" infoClass="succeededMessage" showSummary="false" showDetail="true"
+						globalOnly="true" />
+					<br />
+					
+					<div class="xalign">
+						<h:commandButton value="Apply All" action="#{configsBean.applyAllConfigs}">
+						</h:commandButton>
+						<br />
+					</div>
+
+
+					<br />
+					<h:dataTable var="vConfig" width="100%" value="#{configsBean.moduleConfigs}">
+						<h:column>
+							<h:panelGroup>
+								<div style="width: 97%; margin: auto;">
+
+									<div class="reversePnl">
+										<div class="reversePnlTitl">
+											<span class="spanTitle">Module [ #{vConfig.module} ]</span>
+										</div>
+										<div class="reversePnlBdy closedPnl">
+											<br />
+											<h:dataTable var="vProp" width="100%" value="#{vConfig.configList}" styleClass="datatablecss"
+												cellspacing="0" cellpadding="0">
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="ID"></h:outputText>
+													</f:facet>
+													<h:outputText value="#{vProp.id}">
+													</h:outputText>
+												</h:column>
+
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="key"></h:outputText>
+													</f:facet>
+													<h:outputText value="#{vProp.key}">
+													</h:outputText>
+												</h:column>
+
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Value"></h:outputText>
+													</f:facet>
+													<h:inputText value="#{vProp.value}" style="width:350px;">
+													</h:inputText>
+												</h:column>
+
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Running Value"></h:outputText>
+													</f:facet>
+													<h:outputText value="#{vProp.runningConfig}">
+													</h:outputText>
+												</h:column>
+
+												<h:column>
+													<f:facet name="header">
+														<h:outputText value="Description"></h:outputText>
+													</f:facet>
+													<h:outputText value="#{vProp.description}">
+													</h:outputText>
+												</h:column>
+
+											</h:dataTable>
+											<br />
+											<div class="xalign">
+												<h:commandButton value="Update" action="#{configsBean.updateConfigs}">
+													<f:setPropertyActionListener target="#{configsBean.moduleConfig}" value="#{vConfig}" />
+												</h:commandButton>
+												<h:commandButton value="Apply" action="#{configsBean.applyConfigs}"
+													rendered="#{not vConfig.configsApplied}">
+													<f:setPropertyActionListener target="#{configsBean.moduleConfig}" value="#{vConfig}" />
+												</h:commandButton>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</h:panelGroup>
+							<br />
+
+						</h:column>
+					</h:dataTable>
+				</h:form>
+
+
+
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>Web2SMS_Prov_EAR</artifactId>
+	<packaging>ear</packaging>
+
+	<name>Web2SMS_Prov_EAR</name>
+	<parent>
+		<groupId>com.edafa.web2sms</groupId>
+		<artifactId>Web2sms_Prov-Parent</artifactId>
+		<version>2.5B</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Prov_Utils</artifactId>
+			<version>${project.parent.version}</version>
+			<type>ejb</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>Web2SMS_Prov_Main</artifactId>
+			<version>${project.parent.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.edafa.web2sms.lib</groupId>
+			<artifactId>ini4j</artifactId>
+			<version>0.5.2</version>
+			<type>jar</type>
+		</dependency>
+                <dependency>
+                    <groupId>com.edafa.jee</groupId>
+                    <artifactId>app-error-manager</artifactId>
+                    <version>0.2.2</version>
+                    <type>ejb</type>
+                    <scope>provided</scope>
+                </dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.9.1</version>
+				<configuration>
+					<displayName>Web2SMS-Prov</displayName>
+					<applicationName>Web2SMS-Prov</applicationName>
+					<finalName>Web2SMS-Prov</finalName>
+					<modules>
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Prov_Utils</artifactId>
+							<bundleFileName>Web2SMS-Prov_Utils.jar</bundleFileName>
+						</ejbModule>
+						<!-- <webModule> <groupId>${project.parent.groupId}</groupId> <artifactId>Web2SMS_SMS-API</artifactId> 
+							<bundleFileName>Web2SMS_SMS-API.war</bundleFileName> <context-root>web2sms/prov/</context-root> 
+							</webModule> -->
+						<webModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>Web2SMS_Prov_Main</artifactId>
+							<bundleFileName>Web2SMS-Prov_Main.war</bundleFileName>
+							<context-root>web2sms/prov/</context-root>
+						</webModule>
+                                                <jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-api</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+						<jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-core</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+                                               <jarModule>
+							<groupId>org.apache.logging.log4j</groupId>
+							<artifactId>log4j-web</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+                                                <jarModule>
+                                                    <groupId>com.lmax</groupId>
+                                                    <artifactId>disruptor</artifactId>
+                                                    <bundleDir>lib</bundleDir>
+                                                </jarModule>
+						<jarModule>
+							<groupId>com.edafa.web2sms.lib</groupId>
+							<artifactId>ini4j</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+                                                <ejbModule>
+							<groupId>com.edafa.jee</groupId>
+							<artifactId>app-error-manager</artifactId>
+							<bundleFileName>AppErrorManager.jar</bundleFileName>
+						</ejbModule>
+						<jarModule>
+							<groupId>com.edafa.utils</groupId>
+							<artifactId>jcommons</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+					
+						<jarModule>
+							<groupId>com.edafa.web2sms</groupId>
+							<artifactId>EncyrptionUtil</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+						<jarModule>
+							<groupId>com.google.guava</groupId>
+							<artifactId>guava</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+						
+						<jarModule>
+							<groupId>org.apache.commons</groupId>
+							<artifactId>commons-pool2</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+						<jarModule>
+							<groupId>org.bouncycastle</groupId>
+							<artifactId>bcprov-jdk15on</artifactId>
+							<bundleDir>lib</bundleDir>
+						</jarModule>
+					</modules>
+					<envEntries>
+						<env-entry>
+							<env-entry-name>java:app/env/basedir</env-entry-name>
+							<env-entry-type>java.lang.String</env-entry-type>
+							<env-entry-value>web2sms-prov/</env-entry-value>
+						</env-entry>
+						<env-entry>
+							<env-entry-name>java:app/env/baseconfigdir</env-entry-name>
+							<env-entry-type>java.lang.String</env-entry-type>
+							<env-entry-value>web2sms-prov/</env-entry-value>
+						</env-entry>
+						
+					</envEntries>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

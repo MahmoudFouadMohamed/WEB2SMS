@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<f:view>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<title>Login</title>
+
+		<h:outputStylesheet name="css/login_style.css" />
+		<h:outputScript name="js/jquery-1.9.1.js" />
+
+		<script>
+			function setFocus() {
+				document.getElementById("usrInput").focus();
+			}
+		</script>
+	</h:head>
+
+	<body onload="setFocus()">
+		<h:form class="login_form">
+			<div id="bkground">
+				<div id="up">
+					<h:graphicImage name="img/logo_Voda.png" alt="Vodafone Egypt Logo"
+						style="width: 120px; height: 120px; vertical-align: middle" />
+					<span class="loginTitle"> Vodafone Egypt Web 2 SMS </span>
+				</div>
+
+				<div id="split"></div>
+
+				<div id="down">
+					<div id="access">
+						<div class="loginResultMessages">
+							<h:messages styleClass="errormessageslogin" />
+							<h:outputText value="#{systemLogin.loginResult}"></h:outputText>
+						</div>
+						<!-- 		* Unauthorized access is not allowed, If you
+					are not authorized to access this page please close your browser. -->
+					</div>
+				</div>
+
+				<div id="loginFormBack"></div>
+				<div id="loginFormTitle">Login</div>
+				<div id="loginFormBody">
+					<p>
+						<h:panelGroup styleClass="loginInputs">
+							<div class="loginInputs">
+								<h:graphicImage name="img/username.png" style="width: 30px; height: 30px; vertical-align: middle" />
+								Username
+								<h:inputText type="username" required="true" maxlength="30" id="usrInput" label="User Name"
+									value="#{systemLogin.systemUser.username}" name="usrInput" placeholder="Username"></h:inputText>
+								<h:graphicImage name="img/password.png" style="width: 30px; height: 30px; vertical-align: middle" />
+
+								Password
+								<h:inputSecret redisplay="true" required="true" label="Password" maxlength="30"
+									value="#{systemLogin.systemUser.password}"></h:inputSecret>
+								<h:commandButton value="Login" type="submit" action="#{systemLogin.AuthUser}"></h:commandButton>
+							</div>
+						</h:panelGroup>
+					</p>
+				</div>
+
+			</div>
+		</h:form>
+	</body>
+</f:view>
+</html>
